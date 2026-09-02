@@ -72,10 +72,15 @@ export default function Navbar({ lang, setLang, logoUrl }) {
                 data-lang="en"
               >EN</span>
             </div>
-            <a href="https://booking.libroreserve.com/1764704553526020c1231/QC0176470455364B882/seat"
-              target="_blank" className="nav-reserve" rel="noreferrer">
-              <span className="fr">Réserver</span>
-              <span className="en">Book Now</span>
+            <a 
+              href="https://booking.libroreserve.com/1764704553526020c1231/QC0176470455364B882/seat"
+              target="_blank" 
+              className="nav-reserve" 
+              rel="noreferrer"
+              style={{ color: '#000000', textDecoration: 'none', fontWeight: 'bold' }}
+            >
+              <span className="fr" style={{ color: '#000000' }}>Réserver</span>
+              <span className="en" style={{ color: '#000000' }}>Book Now</span>
             </a>
 
             {/* Mobile Hamburger Button */}

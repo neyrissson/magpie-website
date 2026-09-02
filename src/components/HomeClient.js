@@ -100,9 +100,9 @@ export default function HomeClient({ heroBgUrl }) {
           </p>
           <div className="hero-cta">
             <a href="https://booking.libroreserve.com/1764704553526020c1231/QC0176470455364B882/seat"
-              target="_blank" className="btn-primary" rel="noreferrer" style={{ padding: '1rem 2.5rem' }}>
-              <span className="fr">Réserver</span>
-              <span className="en">Book a table</span>
+              target="_blank" className="btn-primary" rel="noreferrer" style={{ padding: '1rem 2.5rem', color: '#000000' }}>
+              <span className="fr" style={{ color: '#000000' }}>Réserver</span>
+              <span className="en" style={{ color: '#000000' }}>Book a table</span>
             </a>
             <Link href="/menu" className="btn-secondary" style={{ padding: '1rem 2.5rem' }}>
               <span className="fr">Menus</span>

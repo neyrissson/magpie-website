@@ -151,18 +151,22 @@ body.lang-en .fr {
     opacity: 1;
 }
 
-.nav-reserve {
+.nav-reserve,
+.nav-reserve:visited,
+.nav-reserve:hover,
+.nav-reserve:active,
+.nav-reserve span {
     font-family: var(--font-deco);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 0.2em;
-    color: var(--black);
+    color: #000000 !important;
     background: var(--gold-gradient);
     text-transform: uppercase;
     padding: 0.8rem 1.8rem;
     border: 1px solid var(--black);
     cursor: pointer;
-    text-decoration: none;
+    text-decoration: none !important;
     transition: all 0.3s;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
@@ -333,16 +337,20 @@ body.lang-en .fr {
     justify-content: center;
 }
 
-.btn-primary {
+.btn-primary,
+.btn-primary:visited,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary span {
     font-family: var(--font-deco);
     font-size: 1.05rem;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--black);
+    color: #000000 !important;
     background: var(--gold-gradient);
     padding: 1.3rem 3.2rem;
-    text-decoration: none;
+    text-decoration: none !important;
     border: 1px solid var(--black);
     transition: all 0.3s;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
