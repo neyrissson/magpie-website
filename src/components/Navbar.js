@@ -59,10 +59,6 @@ export default function Navbar({ lang, setLang, logoUrl }) {
           </div>
 
           <div className="nav-right">
-            <a href="https://www.instagram.com/magpiemagiquemtl/" target="_blank" className="nav-social" rel="noreferrer">
-              <span className="fr">Suivez-nous</span>
-              <span className="en">Follow Us</span>
-            </a>
             <div className="lang-switcher" id="lang-switcher">
               <span 
                 className={`lang-opt ${lang === 'fr' ? 'active' : ''}`} 
