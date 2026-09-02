@@ -184,65 +184,115 @@ export default function MenuPage() {
                   const { groups, defaultGroup } = getGroupedItems(activeCatObj.items);
                   const groupKeys = Object.keys(groups);
 
-                  const renderMenuItem = (item) => (
-                    <div key={item.id} className="menu-item" style={{ 
-                      display: 'flex', 
-                      justifyContent: 'space-between', 
-                      alignItems: 'baseline', 
-                      borderBottom: '1px dotted rgba(201, 168, 76, 0.3)', 
-                      paddingBottom: '1.5rem',
-                      opacity: item.isAvailable ? 1 : 0.5
-                    }}>
-                      <div className="item-info" style={{ paddingRight: '2rem' }}>
-                        <div className="item-name" style={{ 
-                          fontFamily: 'var(--font-serif)', 
-                          fontSize: '1.55rem', 
-                          color: '#ffffff', 
-                          marginBottom: '0.5rem',
-                          fontWeight: 'bold'
+                  const renderMenuItem = (item) => {
+                    const isTasting = item.name_fr?.toLowerCase().includes('dégustation') || item.name_en?.toLowerCase().includes('tasting');
+
+                    if (isTasting) {
+                      return (
+                        <div key={item.id} style={{
+                          gridColumn: '1 / -1',
+                          background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(10, 7, 5, 0.8) 100%)',
+                          border: '1px solid var(--gold)',
+                          borderRadius: '6px',
+                          padding: '2.5rem 3rem',
+                          marginBottom: '2rem',
+                          boxShadow: '0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.15)',
+                          position: 'relative'
                         }}>
-                          <span className="fr">{item.name_fr}</span>
-                          <span className="en">{item.name_en}</span>
-                          {!item.isAvailable && (
-                            <span style={{ fontSize: '0.85rem', color: '#E74C3C', marginLeft: '1rem', border: '1px solid #E74C3C', padding: '2px 8px', textTransform: 'uppercase', fontFamily: 'var(--font-deco)', fontWeight: 'bold' }}>
-                              <span className="fr">Non disponible</span>
-                              <span className="en">Unavailable</span>
-                            </span>
+                          <div style={{ display: 'inline-block', background: 'var(--gold)', color: '#000000', fontSize: '0.8rem', fontWeight: 'bold', letterSpacing: '0.15em', textTransform: 'uppercase', padding: '4px 12px', borderRadius: '2px', marginBottom: '1.2rem', fontFamily: 'var(--font-sans), sans-serif' }}>
+                            ✨ Offre Spéciale / Special Offer
+                          </div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1.5rem' }}>
+                            <div style={{ maxWidth: '75%' }}>
+                              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', color: '#ffffff', margin: '0 0 0.8rem 0', fontWeight: 'bold' }}>
+                                <span className="fr">{item.name_fr}</span>
+                                <span className="en">{item.name_en}</span>
+                              </h3>
+                              <p style={{ fontSize: '1.22rem', color: '#f0eae1', fontStyle: 'italic', lineHeight: '1.6', margin: '0 0 1rem 0' }}>
+                                <span className="fr">{item.ingredients_fr}</span>
+                                <span className="en">{item.ingredients_en}</span>
+                              </p>
+                              {item.notes_fr && (
+                                <div style={{ background: 'rgba(0, 0, 0, 0.4)', padding: '0.8rem 1.2rem', borderRadius: '4px', borderLeft: '3px solid var(--gold)', color: 'var(--gold-light)', fontSize: '1.05rem', fontWeight: '500' }}>
+                                  <span className="fr">💡 {item.notes_fr}</span>
+                                  <span className="en">💡 {item.notes_en}</span>
+                                </div>
+                              )}
+                            </div>
+                            <div style={{ textAlign: 'right' }}>
+                              <div style={{ fontFamily: 'var(--font-deco)', color: 'var(--gold)', fontSize: '2.4rem', fontWeight: 'bold' }}>
+                                {item.price}$
+                              </div>
+                              <span style={{ fontSize: '0.9rem', color: 'rgba(255, 255, 255, 0.6)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                                <span className="fr">par convive</span>
+                                <span className="en">per guest</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <div key={item.id} className="menu-item" style={{ 
+                        display: 'flex', 
+                        justifyContent: 'space-between', 
+                        alignItems: 'baseline', 
+                        borderBottom: '1px dotted rgba(201, 168, 76, 0.3)', 
+                        paddingBottom: '1.5rem',
+                        opacity: item.isAvailable ? 1 : 0.5
+                      }}>
+                        <div className="item-info" style={{ paddingRight: '2rem' }}>
+                          <div className="item-name" style={{ 
+                            fontFamily: 'var(--font-serif)', 
+                            fontSize: '1.55rem', 
+                            color: '#ffffff', 
+                            marginBottom: '0.5rem',
+                            fontWeight: 'bold'
+                          }}>
+                            <span className="fr">{item.name_fr}</span>
+                            <span className="en">{item.name_en}</span>
+                            {!item.isAvailable && (
+                              <span style={{ fontSize: '0.85rem', color: '#E74C3C', marginLeft: '1rem', border: '1px solid #E74C3C', padding: '2px 6px', textTransform: 'uppercase', fontFamily: 'var(--font-deco)', fontWeight: 'bold' }}>
+                                <span className="fr">Non disponible</span>
+                                <span className="en">Unavailable</span>
+                              </span>
+                            )}
+                          </div>
+                          <div className="item-desc" style={{ 
+                            fontSize: '1.18rem', 
+                            color: '#f0eae1', 
+                            fontStyle: 'italic',
+                            lineHeight: '1.5',
+                            opacity: 0.92
+                          }}>
+                            <span className="fr">{item.ingredients_fr}</span>
+                            <span className="en">{item.ingredients_en}</span>
+                          </div>
+                          {(item.notes_fr || item.notes_en) && (
+                            <div className="item-notes" style={{
+                              fontSize: '1.05rem',
+                              color: 'var(--gold)',
+                              marginTop: '0.5rem',
+                              fontWeight: '600',
+                              opacity: 1
+                            }}>
+                              <span className="fr">{item.notes_fr}</span>
+                              <span className="en">{item.notes_en}</span>
+                            </div>
                           )}
                         </div>
-                        <div className="item-desc" style={{ 
-                          fontSize: '1.18rem', 
-                          color: '#f0eae1', 
-                          fontStyle: 'italic',
-                          lineHeight: '1.5',
-                          opacity: 0.92
+                        <div className="item-price" style={{ 
+                          fontFamily: 'var(--font-deco)', 
+                          color: 'var(--gold)', 
+                          fontSize: '1.55rem', 
+                          fontWeight: '700' 
                         }}>
-                          <span className="fr">{item.ingredients_fr}</span>
-                          <span className="en">{item.ingredients_en}</span>
+                          {item.price}$
                         </div>
-                        {(item.notes_fr || item.notes_en) && (
-                          <div className="item-notes" style={{
-                            fontSize: '1.05rem',
-                            color: 'var(--gold)',
-                            marginTop: '0.5rem',
-                            fontWeight: '600',
-                            opacity: 1
-                          }}>
-                            <span className="fr">{item.notes_fr}</span>
-                            <span className="en">{item.notes_en}</span>
-                          </div>
-                        )}
                       </div>
-                      <div className="item-price" style={{ 
-                        fontFamily: 'var(--font-deco)', 
-                        color: 'var(--gold)', 
-                        fontSize: '1.55rem', 
-                        fontWeight: '700' 
-                      }}>
-                        {item.price}$
-                      </div>
-                    </div>
-                  );
+                    );
+                  };
 
                   return (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
