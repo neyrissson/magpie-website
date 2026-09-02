@@ -341,13 +341,13 @@ export default function MenuPage() {
 
         .menu-card-framed {
           background: rgba(13, 10, 8, 0.95);
-          border-right: 1px solid rgba(201, 168, 76, 0.4);
-          border-bottom: 1px solid rgba(201, 168, 76, 0.4);
-          padding: 2.4rem 2.8rem;
+          border-right: 1px solid rgba(201, 168, 76, 0.35);
+          border-bottom: 1px solid rgba(201, 168, 76, 0.35);
+          padding: 1.8rem 2.2rem;
           display: flex;
           justify-content: space-between;
           align-items: flex-start;
-          gap: 1.5rem;
+          gap: 1.2rem;
           transition: background 0.25s ease, box-shadow 0.25s ease;
           box-sizing: border-box;
         }
@@ -363,50 +363,52 @@ export default function MenuPage() {
 
         .menu-card-framed .item-info {
           flex: 1;
-          padding-right: 1.5rem;
+          padding-right: 1.2rem;
         }
 
         .menu-card-framed .item-name {
-          font-family: var(--font-serif);
-          font-size: 1.55rem;
+          font-family: var(--font-serif) !important;
+          font-size: 1.22rem !important;
           color: #ffffff;
-          margin-bottom: 0.6rem;
-          font-weight: bold;
+          margin-bottom: 0.4rem;
+          font-weight: 600;
           letter-spacing: 0.02em;
+          text-transform: none !important;
+          line-height: 1.35;
         }
 
         .menu-card-framed .badge-unavailable {
-          font-size: 0.8rem;
+          font-size: 0.75rem;
           color: #E74C3C;
           border: 1px solid #E74C3C;
           padding: 2px 6px;
           text-transform: uppercase;
-          font-family: var(--font-deco);
+          font-family: var(--font-sans), sans-serif;
           font-weight: bold;
-          margin-left: 1rem;
+          margin-left: 0.8rem;
           border-radius: 2px;
         }
 
         .menu-card-framed .item-desc {
-          font-size: 1.15rem;
+          font-size: 1.02rem;
           color: #e8e0d5;
           font-style: italic;
-          line-height: 1.55;
+          line-height: 1.5;
           opacity: 0.92;
         }
 
         .menu-card-framed .item-notes {
-          font-size: 1.05rem;
+          font-size: 0.95rem;
           color: var(--gold);
-          margin-top: 0.6rem;
-          font-weight: 600;
-          letter-spacing: 0.02em;
+          margin-top: 0.45rem;
+          font-weight: 500;
+          letter-spacing: 0.01em;
         }
 
         .menu-card-framed .item-price {
           font-family: var(--font-deco);
           color: var(--gold);
-          font-size: 1.65rem;
+          font-size: 1.25rem;
           font-weight: 700;
           white-space: nowrap;
         }
@@ -416,7 +418,7 @@ export default function MenuPage() {
             grid-template-columns: 1fr;
           }
           .menu-card-framed {
-            padding: 1.8rem 1.6rem;
+            padding: 1.5rem 1.4rem;
           }
         }
       `}</style>

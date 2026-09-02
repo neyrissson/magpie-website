@@ -577,31 +577,31 @@ h2 em {
 }
 
 .item-name {
-    font-family: var(--font-deco);
-    font-size: 1.1rem;
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
     color: var(--off-white);
-    letter-spacing: 0.05em;
-    margin-bottom: 0.6rem;
-    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
 }
 
 .item-desc,
 .item-ingredients {
-    font-size: 1.1rem;
-    color: rgba(232, 218, 187, 0.6);
+    font-size: 1.02rem;
+    color: rgba(232, 218, 187, 0.7);
     margin-bottom: 0.3rem;
 }
 
 .item-notes {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     color: var(--gold-light);
     font-style: italic;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .item-price {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
+    font-family: var(--font-deco);
+    font-size: 1.25rem;
     color: var(--gold);
     font-weight: 600;
     white-space: nowrap;
