@@ -1009,4 +1009,22 @@ h2 em {
         margin-bottom: 3.5rem;
         width: 100%;
     }
+
+    /* Menu tabs on mobile */
+    .menu-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 2.5rem 0 2rem;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+    }
+
+    .tab {
+        padding: 1.1rem 0.8rem;
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+    }
+
+    .tab:nth-child(2n) {
+        border-right: none;
+    }
 }
