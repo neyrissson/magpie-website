@@ -35,7 +35,7 @@ export default function RecruitSection() {
   };
 
   return (
-    <section id="recruit" className="recruit-section" style={{ background: 'var(--black-card)', borderTop: '1px solid rgba(201, 168, 76, 0.1)', paddingBottom: '10rem' }}>
+    <section id="recruit" className="recruit-section" style={{ background: 'var(--black-card)', borderTop: '1px solid rgba(201, 168, 76, 0.1)', padding: '5rem 2rem 3.5rem' }}>
       <div className="menu-container">
         <p className="section-label">
           <span className="fr">Recrutement</span>
@@ -134,14 +134,14 @@ export default function RecruitSection() {
         .recruit-grid {
           display: grid;
           grid-template-columns: minmax(280px, 1fr) 1.4fr;
-          gap: 6rem;
+          gap: 4rem;
           align-items: center;
         }
         .recruit-title {
           font-size: clamp(2.2rem, 5vw, 3rem);
         }
         .recruit-form-card {
-          padding: 3.5rem;
+          padding: 2.5rem 2.2rem;
           border: 1px solid rgba(201, 168, 76, 0.3);
           background: rgba(0,0,0,0.4);
           border-radius: 4px;

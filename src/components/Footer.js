@@ -34,13 +34,13 @@ export default function Footer({ logoUrl, siteContents }) {
       <div className="footer-logo">
         <img src={logoSrc} alt="Magpie Magique" className="footer-logo-svg" />
       </div>
-      <div className="footer-tagline">
-        {/* Tagline Content (If any) */}
-      </div>
       <div className="footer-divider"></div>
       <div className="footer-info">
         <div className="info-block">
-          <h4>Location</h4>
+          <h4>
+            <span className="fr">Adresse</span>
+            <span className="en">Location</span>
+          </h4>
           <p style={{ whiteSpace: 'pre-line' }}>
             <span className="fr">
               {getContent('footer_address', 'text_fr', "380 Rue Gilford, Montréal\nQC H2J 1N4")}
@@ -51,7 +51,10 @@ export default function Footer({ logoUrl, siteContents }) {
           </p>
         </div>
         <div className="info-block">
-          <h4>Contact</h4>
+          <h4>
+            <span className="fr">Contact</span>
+            <span className="en">Contact</span>
+          </h4>
           <p>
             <span className="fr">
               {renderContactLines(getContent('footer_contact', 'text_fr', "514-759-6247 (SMS ONLY)\ninfo@magpiemagique.com"))}
