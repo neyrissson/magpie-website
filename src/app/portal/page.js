@@ -256,6 +256,40 @@ export default function PortalPage() {
             </div>
           )}
 
+          {/* CANDIDATURES / APPLICATIONS */}
+          {(isAdmin || isManager) && (
+            <div 
+              style={cardStyle('applications')}
+              onMouseEnter={() => setHoveredCard('applications')}
+              onMouseLeave={() => setHoveredCard(null)}
+              onClick={() => router.push('/portal/applications')}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', marginBottom: '1.5rem' }}>
+                <div style={{ background: 'rgba(201, 168, 76, 0.1)', padding: '0.8rem', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" style={{ width: '1.8rem', height: '1.8rem' }}>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                    <polyline points="10 9 9 9 8 9" />
+                  </svg>
+                </div>
+                <h3 style={{ margin: 0, fontSize: '1.3rem', fontFamily: 'var(--font-deco)', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--gold)' }}>
+                  <span className="fr">Candidatures</span>
+                  <span className="en">Applications</span>
+                </h3>
+              </div>
+              <p className="event-desc" style={{ marginBottom: '2.5rem', minHeight: '4.5rem', fontSize: '0.9rem', color: 'var(--cream)', opacity: 0.8, lineHeight: '1.6' }}>
+                <span className="fr">Consultez les candidatures reçues, visualisez et téléchargez les CVs envoyés par les candidats.</span>
+                <span className="en">Review received job applications, view candidate profiles, and download their CVs.</span>
+              </p>
+              <Link href="/portal/applications" className="btn-secondary" style={{ width: '100%', padding: '1.1rem', display: 'block', textAlign: 'center', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.75rem', border: '1px solid var(--gold)', color: 'var(--gold)' }} onClick={(e) => e.stopPropagation()}>
+                <span className="fr">Voir les CVs</span>
+                <span className="en">View CVs</span>
+              </Link>
+            </div>
+          )}
+
         </div>
       </div>
     </main>

@@ -1,16 +1,37 @@
-'use client';
-
 import React, { useState } from 'react';
+import { submitApplication } from '../app/portal/actions-applications';
 
 export default function RecruitSection() {
   const [formData, setFormData] = useState({ name: '', email: '', position: '', cv: null });
   const [status, setStatus] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // MOCK SUBMISSION (Will be replaced by Resend + Supabase logic)
-    console.log('CV Submitted:', formData);
-    setStatus('SENT');
+    setIsSubmitting(true);
+    setErrorMessage('');
+
+    try {
+      const data = new FormData();
+      data.append('name', formData.name);
+      data.append('email', formData.email);
+      data.append('position', formData.position);
+      if (formData.cv) {
+        data.append('cv', formData.cv);
+      }
+
+      const res = await submitApplication(data);
+      if (res.success) {
+        setStatus('SENT');
+      } else {
+        setErrorMessage(res.error || 'Erreur lors de la soumission.');
+      }
+    } catch (err) {
+      setErrorMessage(err.message || 'Erreur lors de la soumission.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -40,6 +61,9 @@ export default function RecruitSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                {errorMessage && (
+                  <p style={{ color: '#ff6b6b', fontSize: '0.85rem', margin: 0 }}>{errorMessage}</p>
+                )}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.2rem' }}>
                   <input 
                     type="text" placeholder="Nom Complet / Full Name" required 
@@ -74,9 +98,28 @@ export default function RecruitSection() {
                   />
                   {formData.cv && <p style={{ marginTop: '0.5rem', fontSize: '0.8rem' }}>{formData.cv.name}</p>}
                 </div>
-                <button type="submit" className="btn-primary" style={{ marginTop: '1rem', width: '100%' }}>
-                  <span className="fr">Envoyer ma candidature</span>
-                  <span className="en">Send Application</span>
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting} 
+                  className="btn-primary" 
+                  style={{ 
+                    marginTop: '1rem', 
+                    width: '100%', 
+                    opacity: isSubmitting ? 0.6 : 1, 
+                    cursor: isSubmitting ? 'wait' : 'pointer' 
+                  }}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span className="fr">Envoi en cours...</span>
+                      <span className="en">Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="fr">Envoyer ma candidature</span>
+                      <span className="en">Send Application</span>
+                    </>
+                  )}
                 </button>
               </form>
             )}
