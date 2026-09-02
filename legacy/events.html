@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Événements & Privatisation — Magpie Magique</title>
+    <meta name="description"
+        content="Organisez vos soirées privées ou découvrez nos événements jazz et late-night sur le Plateau Mont-Royal.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body class="lang-fr">
+
+    <nav class="nav" style="background: rgba(10, 7, 5, 0.98); padding: 0.8rem 3rem;">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo-link">
+                <img src="assets/logo.svg" alt="Magpie Magique Logo" class="nav-logo-svg">
+            </a>
+            <div class="nav-links">
+                <a href="index.html">
+                    <span class="fr">À Propos</span>
+                    <span class="en">About</span>
+                </a>
+                <a href="menu.html">
+                    <span class="fr">Menus</span>
+                    <span class="en">Menus</span>
+                </a>
+                <a href="events.html" class="active">
+                    <span class="fr">Événements</span>
+                    <span class="en">Events</span>
+                </a>
+                <a href="index.html#contact">
+                    <span class="fr">Contact</span>
+                    <span class="en">Contact</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="https://www.instagram.com/magpiemagiquemtl/" target="_blank" class="nav-social">
+                    <span class="fr">Suivez-nous</span>
+                    <span class="en">Follow Us</span>
+                </a>
+                <div class="lang-switcher" id="lang-switcher">
+                    <span class="lang-opt active" data-lang="fr">FR</span>
+                    <span class="lang-sep">|</span>
+                    <span class="lang-opt" data-lang="en">EN</span>
+                </div>
+                <a href="https://booking.libroreserve.com/1764704553526020c1231/QC0176470455364B882/seat"
+                    target="_blank" class="nav-reserve">
+                    <span class="fr">Réserver</span>
+                    <span class="en">Book Now</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- EVENTS SECTION -->
+    <section id="events" class="events-section" style="padding-top: 12rem;">
+        <div class="events-container">
+            <p class="section-label">
+                <span class="fr">À venir</span>
+                <span class="en">Upcoming</span>
+            </p>
+            <h2>
+                <span class="fr">Événements <em>& Live</em></span>
+                <span class="en">Events <em>& Live</em></span>
+            </h2>
+            <div class="events-grid">
+                <!-- LIVE JAZZ EVENT -->
+                <div class="event-card featured-event">
+                    <div class="event-image-container">
+                        <img src="assets/Raf_Jazz.JPG" alt="Live Jazz at Magpie Magique" class="event-image">
+                        <div class="event-image-overlay"></div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <span class="fr">Tous les Vendredis & Samedis</span>
+                            <span class="en">Every Friday & Saturday</span>
+                        </div>
+                        <div class="event-title">
+                            <span class="fr">Jazz Live</span>
+                            <span class="en">Live Jazz</span>
+                        </div>
+                        <div class="event-desc">
+                            <span class="fr">Laissez-vous emporter par les notes vibrantes d'un saxophone dans notre
+                                décor feutré.</span>
+                            <span class="en">Let yourself be carried away by the vibrant notes of a saxophone in our
+                                cozy setting.</span>
+                        </div>
+                        <div class="event-tag">Café-Concert</div>
+                    </div>
+                </div>
+
+                <!-- COMEDY NIGHT (UPGRADED TO FEATURED) -->
+                <div class="event-card featured-event">
+                    <div class="event-image-container">
+                        <img src="assets/microphone.png" alt="Comedy Night at Magpie Magique" class="event-image">
+                        <div class="event-image-overlay"></div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <span class="fr">Tous les Mercredis</span>
+                            <span class="en">Every Wednesday</span>
+                        </div>
+                        <div class="event-title">
+                            <span class="fr">Humour <em>& Cocktails</em></span>
+                            <span class="en">Comedy <em>& Cocktails</em></span>
+                        </div>
+                        <div class="event-desc">
+                            <span class="fr">Venez découvrir les nouveaux talents de l'humour dans une ambiance décontractée et tamisée.</span>
+                            <span class="en">Discover emerging comedy talent in a relaxed, dimly lit atmosphere.</span>
+                        </div>
+                        <div class="event-tag">Comedy Night</div>
+                    </div>
+                </div>
+
+                <!-- PRIVATE EVENTS (UPGRADED TO FEATURED) -->
+                <div class="event-card featured-event">
+                    <div class="event-image-container">
+                        <img src="assets/background_6.jpeg" alt="Private Events at Magpie Magique" class="event-image">
+                        <div class="event-image-overlay"></div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">
+                            <span class="fr">Sur réservation</span>
+                            <span class="en">By Reservation</span>
+                        </div>
+                        <div class="event-title">
+                            <span class="fr">Événements Privés <em>& Photoshoots</em></span>
+                            <span class="en">Private Events <em>& Photoshoots</em></span>
+                        </div>
+                        <div class="event-desc">
+                            <span class="fr">Plongez dans un décor exclusif pour vos soirées privées, lancements ou
+                                cocktails corporatifs.</span>
+                            <span class="en">Immerse your guests in an exclusive setting for private parties, launches,
+                                or corporate cocktails.</span>
+                        </div>
+                        <div class="event-tag">Private Service</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="footer">
+        <div class="footer-logo">
+            <img src="assets/logo.svg" alt="Magpie Magique" class="footer-logo-svg">
+        </div>
+        <div class="footer-tagline">
+        </div>
+        <div class="footer-divider"></div>
+        <div class="footer-info">
+            <div class="info-block">
+                <h4>Location</h4>
+                <p>380 Rue Gilford, Montréal<br>QC H2J 1N4</p>
+            </div>
+            <div class="info-block">
+                <h4>Contact</h4>
+                <p>514-759-6247 (SMS ONLY)<br><a href="mailto:info@magpiemagique.com">info@magpiemagique.com</a></p>
+            </div>
+            <div class="info-block">
+                <h4>
+                    <span class="fr">Heures</span>
+                    <span class="en">Hours</span>
+                </h4>
+                <p>
+                    <span class="fr">
+                        Mercredi et Dimanche: 17h – minuit<br>
+                        Jeudi, Vendredi et Samedi: 17h – 2h<br>
+                        Fermé Lundi & Mardi
+                    </span>
+                    <span class="en">
+                        Wednesday and Sunday: 5pm – midnight<br>
+                        Thursday, Friday and Saturday: 5pm – 2am<br>
+                        Closed Monday & Tuesday
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="footer-copy">© 2024 Magpie Magique · <span class="fr">Tous droits réservés</span><span
+                class="en">All rights reserved</span></div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

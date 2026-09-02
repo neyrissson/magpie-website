@@ -1,0 +1,176 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ── AUTHENTICATION & USERS ──
+enum Role {
+  ADMIN
+  MANAGER
+  STAFF
+}
+
+enum Status {
+  PENDING
+  ACTIVE
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  password      String?
+  role          Role      @default(STAFF)
+  status        Status    @default(PENDING)
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  shifts        StaffShift[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ── CONTENT MANAGEMENT (CMS) ──
+model Photo {
+  id          String   @id @default(cuid())
+  url         String
+  originalUrl String?
+  name        String
+  alt         String?
+  source      String   @default("local") // "local" or "supabase"
+  tags        String?  @default("")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  categories  MenuCategory[]
+  siteImages  SiteImage[]
+  publicEvents PublicEvent[]
+  menuItems   MenuItem[]
+}
+
+model SiteContent {
+  id      String @id @default(cuid())
+  key     String @unique
+  text_fr String @db.Text
+  text_en String @db.Text
+}
+
+model SiteImage {
+  id      String @id @default(cuid())
+  key     String @unique
+  url     String? // Fallback or legacy path
+  photoId String?
+  photo   Photo?  @relation(fields: [photoId], references: [id])
+}
+
+model MenuCategory {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  name_fr     String
+  name_en     String
+  image       String     // Default/Initial path
+  photoId     String?
+  photo       Photo?      @relation(fields: [photoId], references: [id])
+  tag         String
+  items       MenuItem[]
+  order       Int        @default(0)
+  isAvailable Boolean    @default(true)
+}
+
+model MenuItem {
+  id             String       @id @default(cuid())
+  name_fr        String
+  name_en        String
+  ingredients_fr String?      @db.Text
+  ingredients_en String?      @db.Text
+  notes_fr       String?      @db.Text
+  notes_en       String?      @db.Text
+  price          String
+  categoryId     String
+  category       MenuCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  photoId        String?
+  photo          Photo?       @relation(fields: [photoId], references: [id])
+  isAvailable    Boolean      @default(true)
+  subcategory_fr String?
+  subcategory_en String?
+}
+
+// ── EVENTS & SCHEDULE ──
+enum EventType {
+  JAZZ
+  COMEDY
+  PRIVATE
+}
+
+model PublicEvent {
+  id          String   @id @default(cuid())
+  date        DateTime
+  title_fr    String
+  title_en    String
+  type        EventType
+  desc_fr     String?  @db.Text
+  desc_en     String?  @db.Text
+  photoId     String?
+  photo       Photo?   @relation(fields: [photoId], references: [id])
+  color       String?
+  ticketUrl   String?
+}
+
+model StaffShift {
+  id        String   @id @default(cuid())
+  date      DateTime
+  title     String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ── RECRUITMENT ──
+model Application {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  position  String
+  cv_url    String
+  createdAt DateTime @default(now())
+}
+
+model PosterPreset {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  config    String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

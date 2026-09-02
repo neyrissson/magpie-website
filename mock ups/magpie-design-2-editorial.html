@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magpie Magique — Design 2: Éditorial Rouge</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #9B0000;
+    --red-mid: #6B0000;
+    --red-dark: #2A0000;
+    --gold: #D4A843;
+    --gold-muted: #8B6E2E;
+    --black: #0D0000;
+    --white: #FAF5EE;
+    --grey: #B8A9A0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 1.5rem 2.5rem;
+    mix-blend-mode: normal;
+  }
+  .nav-left { display: flex; gap: 2rem; }
+  .nav-center {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; letter-spacing: 0.1em;
+    color: var(--gold); text-align: center;
+    font-style: italic;
+  }
+  .nav-right { display: flex; gap: 2rem; justify-content: flex-end; align-items: center; }
+  nav a {
+    font-size: 0.6rem; letter-spacing: 0.2em;
+    color: rgba(250,245,238,0.5); text-decoration: none;
+    text-transform: uppercase; transition: color 0.3s;
+  }
+  nav a:hover { color: var(--gold); }
+  .nav-btn {
+    font-size: 0.6rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--black);
+    background: var(--gold); padding: 0.4rem 1rem;
+    border: none; cursor: pointer; font-family: 'DM Mono', monospace;
+    transition: background 0.3s; text-decoration: none;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--red);
+    display: flex; align-items: flex-end;
+    padding: 6rem 3rem 4rem;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+  }
+  .hero-left::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--red) 0%, var(--red-mid) 60%, var(--red-dark) 100%);
+  }
+  /* Grain texture */
+  .hero-left::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+
+  .hero-left-content { position: relative; z-index: 1; }
+
+  .hero-number {
+    font-size: 0.6rem; letter-spacing: 0.4em;
+    color: rgba(250,245,238,0.4); margin-bottom: 2rem;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 7vw, 6.5rem);
+    font-weight: 900; line-height: 0.95;
+    color: var(--white);
+    opacity: 0; animation: slideIn 1s ease 0.3s forwards;
+  }
+  .hero-title em {
+    display: block; font-style: italic;
+    color: var(--gold); font-weight: 400;
+    font-size: 0.85em;
+  }
+
+  .hero-right {
+    background: var(--black);
+    display: flex; flex-direction: column;
+    justify-content: center; padding: 6rem 3rem 4rem 5rem;
+    position: relative;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute; top: 0; bottom: 0; left: -1px;
+    width: 1px; background: var(--gold-muted);
+  }
+
+  .big-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(5rem, 10vw, 9rem);
+    color: rgba(155,0,0,0.12);
+    line-height: 1; position: absolute;
+    top: 3rem; right: 2rem;
+    font-style: italic;
+  }
+
+  .hero-desc {
+    font-size: 0.85rem; line-height: 2;
+    color: var(--grey); margin-bottom: 3rem;
+    max-width: 380px;
+    opacity: 0; animation: slideIn 1s ease 0.7s forwards;
+  }
+
+  .hero-meta {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; margin-bottom: 3rem;
+    opacity: 0; animation: slideIn 1s ease 0.9s forwards;
+  }
+  .meta-item {}
+  .meta-key {
+    font-size: 0.55rem; letter-spacing: 0.3em;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .meta-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--white);
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem;
+    opacity: 0; animation: slideIn 1s ease 1.1s forwards;
+  }
+  .btn-red {
+    background: var(--red); color: var(--white);
+    padding: 0.8rem 2rem; text-decoration: none;
+    font-size: 0.6rem; letter-spacing: 0.2em;
+    text-transform: uppercase; transition: background 0.3s;
+    border: 1px solid var(--red);
+  }
+  .btn-red:hover { background: #B50000; }
+  .btn-outline-gold {
+    background: transparent; color: var(--gold);
+    padding: 0.8rem 2rem; text-decoration: none;
+    font-size: 0.6rem; letter-spacing: 0.2em;
+    text-transform: uppercase; border: 1px solid var(--gold-muted);
+    transition: all 0.3s;
+  }
+  .btn-outline-gold:hover { border-color: var(--gold); }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--red); overflow: hidden;
+    padding: 0.8rem 0; border-top: 1px solid rgba(212,168,67,0.3);
+    border-bottom: 1px solid rgba(212,168,67,0.3);
+  }
+  .marquee-track {
+    display: flex; gap: 0;
+    animation: marquee 20s linear infinite;
+    width: max-content;
+  }
+  .marquee-item {
+    font-size: 0.6rem; letter-spacing: 0.3em;
+    text-transform: uppercase; white-space: nowrap;
+    padding: 0 3rem; color: rgba(250,245,238,0.7);
+  }
+  .marquee-item span { color: var(--gold); margin: 0 1rem; }
+
+  /* ── MENU ── */
+  .menu-section {
+    padding: 6rem 3rem;
+    display: grid; grid-template-columns: 280px 1fr;
+    gap: 4rem; max-width: 1200px; margin: 0 auto;
+  }
+
+  .menu-sidebar {}
+  .menu-sidebar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-style: italic;
+    color: var(--white); margin-bottom: 2rem;
+    line-height: 1.1;
+  }
+  .menu-sidebar-title strong { color: var(--red); font-style: normal; }
+
+  .menu-nav { list-style: none; }
+  .menu-nav li {
+    border-bottom: 1px solid rgba(250,245,238,0.06);
+  }
+  .menu-nav button {
+    width: 100%; text-align: left;
+    background: none; border: none; cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.2em;
+    color: var(--grey); text-transform: uppercase;
+    padding: 1rem 0; transition: color 0.2s;
+    display: flex; justify-content: space-between;
+    align-items: center;
+  }
+  .menu-nav button:hover { color: var(--white); }
+  .menu-nav button.active { color: var(--gold); }
+  .menu-nav button.active::after { content: '→'; color: var(--gold); }
+
+  .menu-content {}
+  .menu-list { display: flex; flex-direction: column; gap: 0; }
+  .menu-row {
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 2rem; align-items: baseline;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(250,245,238,0.06);
+  }
+  .menu-row:hover { background: rgba(155,0,0,0.05); }
+  .menu-row-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .menu-row-desc {
+    font-size: 0.7rem; color: var(--grey);
+    letter-spacing: 0.05em; line-height: 1.6;
+  }
+  .menu-row-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: var(--gold);
+    white-space: nowrap;
+  }
+
+  /* ── EVENTS ── */
+  .events-wrap {
+    background: var(--red-dark);
+    padding: 6rem 3rem;
+  }
+  .events-inner { max-width: 1200px; margin: 0 auto; }
+  .events-header {
+    display: flex; justify-content: space-between;
+    align-items: baseline; margin-bottom: 3rem;
+  }
+  .events-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-style: italic; color: var(--white);
+  }
+  .events-title strong { color: var(--gold); font-style: normal; }
+  .events-list { display: flex; flex-direction: column; gap: 1px; }
+  .event-row {
+    background: rgba(250,245,238,0.03);
+    display: grid; grid-template-columns: 100px 1fr auto;
+    gap: 2rem; align-items: center; padding: 2rem 2.5rem;
+    transition: background 0.3s; cursor: pointer;
+    border-left: 3px solid transparent;
+  }
+  .event-row:hover { background: rgba(250,245,238,0.06); border-left-color: var(--gold); }
+  .event-row-date {
+    font-size: 0.6rem; letter-spacing: 0.2em;
+    color: var(--gold); text-transform: uppercase;
+    line-height: 1.6;
+  }
+  .event-row-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .event-row-type {
+    font-size: 0.6rem; letter-spacing: 0.2em;
+    color: var(--grey); text-transform: uppercase;
+  }
+  .event-row-cta {
+    font-size: 0.6rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    background: none; border: 1px solid rgba(212,168,67,0.3);
+    padding: 0.5rem 1.2rem; cursor: pointer;
+    font-family: 'DM Mono', monospace; white-space: nowrap;
+    transition: all 0.3s;
+  }
+  .event-row-cta:hover { border-color: var(--gold); background: rgba(212,168,67,0.08); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    padding: 3rem;
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem; align-items: center;
+    border-top: 1px solid rgba(250,245,238,0.06);
+  }
+  .foot-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-style: italic; color: var(--gold);
+  }
+  .foot-info {
+    text-align: center;
+    font-size: 0.65rem; letter-spacing: 0.15em;
+    color: var(--grey); line-height: 2;
+    text-transform: uppercase;
+  }
+  .foot-copy {
+    text-align: right; font-size: 0.6rem;
+    color: rgba(250,245,238,0.2); letter-spacing: 0.1em;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-15px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="#">Menus</a>
+    <a href="#">Événements</a>
+  </div>
+  <div class="nav-center">Magpie Magique</div>
+  <div class="nav-right">
+    <a href="#">Contact</a>
+    <a href="#" class="nav-btn">Réserver</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-left-content">
+      <div class="hero-number">— 380 Rue Gilford, Montréal</div>
+      <h1 class="hero-title">
+        Magpie
+        <em>Magique</em>
+      </h1>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="big-quote">"</div>
+    <p class="hero-desc">
+      Speakeasy de caractère au cœur du Plateau. Cocktails de collection, petits plats à partager, musique live certains soirs. Une entrée discrète, une expérience inoubliable.
+    </p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <div class="meta-key">Ouvert</div>
+        <div class="meta-val">Mer – Dim</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">Heures</div>
+        <div class="meta-val">17h – 2h</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">Quartier</div>
+        <div class="meta-val">Le Plateau</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">Téléphone</div>
+        <div class="meta-val">(514) 759-6247</div>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="#" class="btn-red">Réserver une table</a>
+      <a href="#" class="btn-outline-gold">Voir les menus ↓</a>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Cocktails Artisanaux <span>◆</span></span>
+    <span class="marquee-item">Musique Live <span>◆</span></span>
+    <span class="marquee-item">Mezze & Pizzas <span>◆</span></span>
+    <span class="marquee-item">Speakeasy Style <span>◆</span></span>
+    <span class="marquee-item">380 Rue Gilford <span>◆</span></span>
+    <span class="marquee-item">Réservations <span>◆</span></span>
+    <span class="marquee-item">Cocktails Artisanaux <span>◆</span></span>
+    <span class="marquee-item">Musique Live <span>◆</span></span>
+    <span class="marquee-item">Mezze & Pizzas <span>◆</span></span>
+    <span class="marquee-item">Speakeasy Style <span>◆</span></span>
+    <span class="marquee-item">380 Rue Gilford <span>◆</span></span>
+    <span class="marquee-item">Réservations <span>◆</span></span>
+  </div>
+</div>
+
+<!-- MENU -->
+<div class="menu-section">
+  <div class="menu-sidebar">
+    <div class="menu-sidebar-title">Nos <strong>menus</strong></div>
+    <ul class="menu-nav">
+      <li><button class="active">Cocktails</button></li>
+      <li><button>Mocktails</button></li>
+      <li><button>Petits Plats</button></li>
+      <li><button>Pizzas</button></li>
+      <li><button>Desserts</button></li>
+    </ul>
+  </div>
+  <div class="menu-content">
+    <div class="menu-list">
+      <div class="menu-row">
+        <div>
+          <div class="menu-row-name">Late Night Encounter</div>
+          <div class="menu-row-desc">Espresso, Kahlúa, crème de cacao, huile de truffe</div>
+        </div>
+        <div class="menu-row-price">18$</div>
+      </div>
+      <div class="menu-row">
+        <div>
+          <div class="menu-row-name">Mob Wife Martini</div>
+          <div class="menu-row-desc">Vodka, Aperol, fruit de la passion, hibiscus</div>
+        </div>
+        <div class="menu-row-price">18$</div>
+      </div>
+      <div class="menu-row">
+        <div>
+          <div class="menu-row-name">Date Night</div>
+          <div class="menu-row-desc">Champagne, rose, litchi, pétales comestibles</div>
+        </div>
+        <div class="menu-row-price">20$</div>
+      </div>
+      <div class="menu-row">
+        <div>
+          <div class="menu-row-name">The Impeachable</div>
+          <div class="menu-row-desc">Bourbon, miel de truffe, bitters de whisky, orange confite</div>
+        </div>
+        <div class="menu-row-price">17$</div>
+      </div>
+      <div class="menu-row">
+        <div>
+          <div class="menu-row-name">Sazerac</div>
+          <div class="menu-row-desc">Rye, Peychaud's, absinthe, sucre de canne brut</div>
+        </div>
+        <div class="menu-row-price">16$</div>
+      </div>
+      <div class="menu-row">
+        <div>
+          <div class="menu-row-name">Green Negroni</div>
+          <div class="menu-row-desc">Gin, Suze, Chartreuse verte, vermouth blanc sec</div>
+        </div>
+        <div class="menu-row-price">16$</div>
+      </div>
+      <div class="menu-row">
+        <div>
+          <div class="menu-row-name">Daiquiri Classique</div>
+          <div class="menu-row-desc">Rhum blanc, lime fraîche, sucre de canne</div>
+        </div>
+        <div class="menu-row-price">14$</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EVENTS -->
+<div class="events-wrap">
+  <div class="events-inner">
+    <div class="events-header">
+      <h2 class="events-title">Événements<br><strong>& Performances</strong></h2>
+      <a href="#" class="btn-outline-gold">Tous les événements →</a>
+    </div>
+    <div class="events-list">
+      <div class="event-row">
+        <div class="event-row-date">Ven<br>4 Avr</div>
+        <div>
+          <div class="event-row-title">Jazz en Sourdine — Quartet Manouche</div>
+          <div class="event-row-type">Musique Live · 21h</div>
+        </div>
+        <button class="event-row-cta">Réserver</button>
+      </div>
+      <div class="event-row">
+        <div class="event-row-date">Sam<br>12 Avr</div>
+        <div>
+          <div class="event-row-title">Menu Dégustation 6 Services</div>
+          <div class="event-row-type">Gastronomie · 19h</div>
+        </div>
+        <button class="event-row-cta">Réserver</button>
+      </div>
+      <div class="event-row">
+        <div class="event-row-date">Jeu<br>24 Avr</div>
+        <div>
+          <div class="event-row-title">Burlesque & Bitters — Soirée Éphémère</div>
+          <div class="event-row-type">Performance · 22h</div>
+        </div>
+        <button class="event-row-cta">Réserver</button>
+      </div>
+      <div class="event-row">
+        <div class="event-row-date">Sam<br>3 Mai</div>
+        <div>
+          <div class="event-row-title">Blues & Bourbon Night</div>
+          <div class="event-row-type">Musique Live · 21h</div>
+        </div>
+        <button class="event-row-cta">Réserver</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-brand">Magpie Magique</div>
+  <div class="foot-info">
+    380 Rue Gilford, Montréal H2J 2L3<br>
+    (514) 759-6247 · magpiemagique.com
+  </div>
+  <div class="foot-copy">© 2025 Magpie Magique</div>
+</footer>
+
+<script>
+  document.querySelectorAll('.menu-nav button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.menu-nav button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
