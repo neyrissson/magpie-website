@@ -152,10 +152,7 @@ body.lang-en .fr {
 }
 
 .nav-reserve,
-.nav-reserve:visited,
-.nav-reserve:hover,
-.nav-reserve:active,
-.nav-reserve span {
+.nav-reserve:visited {
     font-family: var(--font-deco);
     font-size: 0.82rem;
     font-weight: 700;
@@ -169,6 +166,16 @@ body.lang-en .fr {
     text-decoration: none !important;
     transition: all 0.3s;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+}
+
+.nav-reserve span,
+.nav-reserve:visited span {
+    color: #000000 !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
 }
 
 .nav-reserve:hover {
@@ -338,10 +345,7 @@ body.lang-en .fr {
 }
 
 .btn-primary,
-.btn-primary:visited,
-.btn-primary:hover,
-.btn-primary:active,
-.btn-primary span {
+.btn-primary:visited {
     font-family: var(--font-deco);
     font-size: 1.05rem;
     font-weight: 700;
@@ -354,6 +358,16 @@ body.lang-en .fr {
     border: 1px solid var(--black);
     transition: all 0.3s;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    display: inline-block;
+}
+
+.btn-primary span,
+.btn-primary:visited span {
+    color: #000000 !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
 }
 
 .btn-primary:hover {
@@ -1199,8 +1213,16 @@ h2 em {
     letter-spacing: 0.15em;
     text-transform: uppercase;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    color: var(--black) !important;
+    color: #000000 !important;
     text-decoration: none !important;
+}
+
+.mobile-reserve-btn span {
+    color: #000000 !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
 }
 
 .mobile-lang-and-social {
