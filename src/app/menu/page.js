@@ -181,11 +181,25 @@ export default function MenuPage() {
                     );
                   }
 
-                  const { groups, defaultGroup } = getGroupedItems(activeCatObj.items);
+                  const isTastingItem = (item) => {
+                    return (
+                      item.name_fr?.toLowerCase().includes('dégustation') || 
+                      item.name_en?.toLowerCase().includes('tasting') ||
+                      item.subcategory_fr?.toLowerCase().includes('dégustation') ||
+                      item.subcategory_en?.toLowerCase().includes('tasting') ||
+                      item.subcategory_fr?.toLowerCase().includes('offre spéciale') ||
+                      item.subcategory_en?.toLowerCase().includes('special offer')
+                    );
+                  };
+
+                  const tastingItems = activeCatObj.items.filter(isTastingItem);
+                  const regularItemsList = activeCatObj.items.filter(i => !isTastingItem(i));
+
+                  const { groups, defaultGroup } = getGroupedItems(regularItemsList);
                   const groupKeys = Object.keys(groups);
 
                   const renderMenuItem = (item, index, array) => {
-                    const isTasting = item.name_fr?.toLowerCase().includes('dégustation') || item.name_en?.toLowerCase().includes('tasting');
+                    const isTasting = isTastingItem(item);
 
                     if (isTasting) {
                       return (
@@ -195,7 +209,7 @@ export default function MenuPage() {
                           border: '1px solid var(--gold)',
                           borderRadius: '4px',
                           padding: '2.5rem 3rem',
-                          marginBottom: '2rem',
+                          marginBottom: '2.5rem',
                           boxShadow: '0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.15)',
                           position: 'relative'
                         }}>
@@ -233,8 +247,7 @@ export default function MenuPage() {
                       );
                     }
 
-                    const nonTasting = array ? array.filter(i => !(i.name_fr?.toLowerCase().includes('dégustation') || i.name_en?.toLowerCase().includes('tasting'))) : [];
-                    const isOddLast = nonTasting.length % 2 !== 0 && nonTasting[nonTasting.length - 1]?.id === item.id;
+                    const isOddLast = array.length % 2 !== 0 && array[array.length - 1]?.id === item.id;
 
                     return (
                       <div 
@@ -273,17 +286,23 @@ export default function MenuPage() {
 
                   return (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
-                      {/* Default Items (Items with no subcategory) */}
+                      {/* 1. TASTING MENU / SPECIAL OFFERS ALWAYS AT THE VERY TOP */}
+                      {tastingItems.length > 0 && (
+                        <div style={{ width: '100%' }}>
+                          {tastingItems.map((item, idx) => renderMenuItem(item, idx, tastingItems))}
+                        </div>
+                      )}
+
+                      {/* 2. Default Ungrouped Items */}
                       {defaultGroup.length > 0 && (
                         <div className="menu-grid-framed">
                           {defaultGroup.map((item, idx) => renderMenuItem(item, idx, defaultGroup))}
                         </div>
                       )}
 
-                      {/* Grouped Items (Items with subcategories) */}
+                      {/* 3. Regular Subcategories (Collations, Entrées, Plats, Desserts) */}
                       {groupKeys.map(groupKey => {
-                        const tastingItems = groups[groupKey].items.filter(i => i.name_fr?.toLowerCase().includes('dégustation') || i.name_en?.toLowerCase().includes('tasting'));
-                        const regularItems = groups[groupKey].items.filter(i => !(i.name_fr?.toLowerCase().includes('dégustation') || i.name_en?.toLowerCase().includes('tasting')));
+                        const itemsInGroup = groups[groupKey].items;
 
                         return (
                           <div key={groupKey} style={{ width: '100%' }}>
@@ -304,13 +323,10 @@ export default function MenuPage() {
                               <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to left, transparent, rgba(201, 168, 76, 0.35))' }} />
                             </div>
                             
-                            {/* If there are tasting menu items, render them first */}
-                            {tastingItems.map((item, idx) => renderMenuItem(item, idx, tastingItems))}
-
-                            {/* Regular items in contiguous seamless gold-framed grid */}
-                            {regularItems.length > 0 && (
+                            {/* Items in contiguous seamless gold-framed grid */}
+                            {itemsInGroup.length > 0 && (
                               <div className="menu-grid-framed">
-                                {regularItems.map((item, idx) => renderMenuItem(item, idx, regularItems))}
+                                {itemsInGroup.map((item, idx) => renderMenuItem(item, idx, itemsInGroup))}
                               </div>
                             )}
                           </div>

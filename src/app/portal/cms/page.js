@@ -529,21 +529,36 @@ export default function AdminCMS() {
 
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                         {selectedCategory.items && selectedCategory.items.length > 0 ? (
-                          selectedCategory.items.map((item) => (
+                          [...(selectedCategory.items)].sort((a, b) => {
+                            const isTastingA = a.name_fr?.toLowerCase().includes('dégustation') || a.name_en?.toLowerCase().includes('tasting') || a.subcategory_fr?.toLowerCase().includes('dégustation');
+                            const isTastingB = b.name_fr?.toLowerCase().includes('dégustation') || b.name_en?.toLowerCase().includes('tasting') || b.subcategory_fr?.toLowerCase().includes('dégustation');
+                            if (isTastingA && !isTastingB) return -1;
+                            if (!isTastingA && isTastingB) return 1;
+                            return 0;
+                          }).map((item) => {
+                            const isTasting = item.name_fr?.toLowerCase().includes('dégustation') || item.name_en?.toLowerCase().includes('tasting') || item.subcategory_fr?.toLowerCase().includes('dégustation');
+
+                            return (
                             <div 
                               key={item.id}
                               style={{ 
                                 padding: '1.8rem',
-                                background: 'rgba(0,0,0,0.4)',
-                                border: '1px solid rgba(201, 168, 76, 0.2)',
+                                background: isTasting ? 'linear-gradient(135deg, rgba(201, 168, 76, 0.12) 0%, rgba(0,0,0,0.6) 100%)' : 'rgba(0,0,0,0.4)',
+                                border: isTasting ? '2px solid var(--gold)' : '1px solid rgba(201, 168, 76, 0.2)',
                                 borderRadius: '4px',
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 alignItems: 'flex-start',
-                                opacity: item.isAvailable ? 1 : 0.5
+                                opacity: item.isAvailable ? 1 : 0.5,
+                                position: 'relative'
                               }}
                             >
                               <div style={{ flex: 1, paddingRight: '2rem' }}>
+                                {isTasting && (
+                                  <div style={{ display: 'inline-block', background: 'var(--gold)', color: '#000000', fontSize: '0.8rem', fontWeight: 'bold', padding: '3px 10px', borderRadius: '3px', marginBottom: '0.8rem', letterSpacing: '0.08em', textTransform: 'uppercase', fontFamily: 'var(--font-sans), sans-serif' }}>
+                                    ✨ OFFRE SPÉCIALE / MENU DÉGUSTATION (FEATURED AT TOP OF MENU)
+                                  </div>
+                                )}
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', marginBottom: '0.8rem', flexWrap: 'wrap' }}>
                                   <h4 style={{ margin: 0, color: '#ffffff', fontSize: '1.45rem', fontWeight: 'bold' }}>{item.name_en} / {item.name_fr}</h4>
                                   <span style={{ color: 'var(--gold)', fontWeight: 'bold', fontSize: '1.45rem' }}>{item.price}$</span>
@@ -573,11 +588,12 @@ export default function AdminCMS() {
                                 )}
                               </div>
                               <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '0.8rem' }}>
-                                <button onClick={() => openEditItem(item)} className="btn-secondary" style={{ padding: '0.6rem 1.4rem', fontSize: '0.95rem', fontWeight: 'bold', fontFamily: 'var(--font-sans), sans-serif' }}>EDIT</button>
+                                <button onClick={() => openEditItem(item)} className="btn-primary" style={{ padding: '0.6rem 1.4rem', fontSize: '0.95rem', fontWeight: 'bold', fontFamily: 'var(--font-sans), sans-serif' }}>EDIT</button>
                                 <button onClick={() => handleItemDelete(item.id)} style={{ padding: '0.6rem 1.4rem', fontSize: '0.95rem', fontWeight: 'bold', color: '#ff6b6b', border: '1px solid #ff6b6b', background: 'transparent', cursor: 'pointer', borderRadius: '3px', fontFamily: 'var(--font-sans), sans-serif' }}>DELETE</button>
                               </div>
                             </div>
-                          ))
+                            );
+                          })
                         ) : (
                           <p style={{ color: '#ffffff', textAlign: 'center', padding: '3rem 0', fontSize: '1.15rem' }}>No items in this category yet. Click "+ NEW ITEM" to add one.</p>
                         )}
