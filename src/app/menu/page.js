@@ -184,16 +184,16 @@ export default function MenuPage() {
                   const { groups, defaultGroup } = getGroupedItems(activeCatObj.items);
                   const groupKeys = Object.keys(groups);
 
-                  const renderMenuItem = (item) => {
+                  const renderMenuItem = (item, index, array) => {
                     const isTasting = item.name_fr?.toLowerCase().includes('dégustation') || item.name_en?.toLowerCase().includes('tasting');
 
                     if (isTasting) {
                       return (
                         <div key={item.id} style={{
                           gridColumn: '1 / -1',
-                          background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(10, 7, 5, 0.8) 100%)',
+                          background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(10, 7, 5, 0.95) 100%)',
                           border: '1px solid var(--gold)',
-                          borderRadius: '6px',
+                          borderRadius: '4px',
                           padding: '2.5rem 3rem',
                           marginBottom: '2rem',
                           boxShadow: '0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.15)',
@@ -233,61 +233,38 @@ export default function MenuPage() {
                       );
                     }
 
+                    const nonTasting = array ? array.filter(i => !(i.name_fr?.toLowerCase().includes('dégustation') || i.name_en?.toLowerCase().includes('tasting'))) : [];
+                    const isOddLast = nonTasting.length % 2 !== 0 && nonTasting[nonTasting.length - 1]?.id === item.id;
+
                     return (
-                      <div key={item.id} className="menu-item" style={{ 
-                        display: 'flex', 
-                        justifyContent: 'space-between', 
-                        alignItems: 'baseline', 
-                        borderBottom: '1px dotted rgba(201, 168, 76, 0.3)', 
-                        paddingBottom: '1.5rem',
-                        opacity: item.isAvailable ? 1 : 0.5
-                      }}>
-                        <div className="item-info" style={{ paddingRight: '2rem' }}>
-                          <div className="item-name" style={{ 
-                            fontFamily: 'var(--font-serif)', 
-                            fontSize: '1.55rem', 
-                            color: '#ffffff', 
-                            marginBottom: '0.5rem',
-                            fontWeight: 'bold'
-                          }}>
+                      <div 
+                        key={item.id} 
+                        className={`menu-card-framed ${isOddLast ? 'span-full' : ''}`}
+                        style={{ opacity: item.isAvailable ? 1 : 0.5 }}
+                      >
+                        <div className="item-info">
+                          <div className="item-name">
                             <span className="fr">{item.name_fr}</span>
                             <span className="en">{item.name_en}</span>
                             {!item.isAvailable && (
-                              <span style={{ fontSize: '0.85rem', color: '#E74C3C', marginLeft: '1rem', border: '1px solid #E74C3C', padding: '2px 6px', textTransform: 'uppercase', fontFamily: 'var(--font-deco)', fontWeight: 'bold' }}>
+                              <span className="badge-unavailable">
                                 <span className="fr">Non disponible</span>
                                 <span className="en">Unavailable</span>
                               </span>
                             )}
                           </div>
-                          <div className="item-desc" style={{ 
-                            fontSize: '1.18rem', 
-                            color: '#f0eae1', 
-                            fontStyle: 'italic',
-                            lineHeight: '1.5',
-                            opacity: 0.92
-                          }}>
+                          <div className="item-desc">
                             <span className="fr">{item.ingredients_fr}</span>
                             <span className="en">{item.ingredients_en}</span>
                           </div>
                           {(item.notes_fr || item.notes_en) && (
-                            <div className="item-notes" style={{
-                              fontSize: '1.05rem',
-                              color: 'var(--gold)',
-                              marginTop: '0.5rem',
-                              fontWeight: '600',
-                              opacity: 1
-                            }}>
+                            <div className="item-notes">
                               <span className="fr">{item.notes_fr}</span>
                               <span className="en">{item.notes_en}</span>
                             </div>
                           )}
                         </div>
-                        <div className="item-price" style={{ 
-                          fontFamily: 'var(--font-deco)', 
-                          color: 'var(--gold)', 
-                          fontSize: '1.55rem', 
-                          fontWeight: '700' 
-                        }}>
+                        <div className="item-price">
                           {item.price}$
                         </div>
                       </div>
@@ -295,49 +272,50 @@ export default function MenuPage() {
                   };
 
                   return (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
                       {/* Default Items (Items with no subcategory) */}
                       {defaultGroup.length > 0 && (
-                        <div className="menu-grid" style={{
-                          display: 'grid',
-                          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-                          gap: '3rem',
-                          width: '100%'
-                        }}>
-                          {defaultGroup.map(renderMenuItem)}
+                        <div className="menu-grid-framed">
+                          {defaultGroup.map((item, idx) => renderMenuItem(item, idx, defaultGroup))}
                         </div>
                       )}
 
                       {/* Grouped Items (Items with subcategories) */}
-                      {groupKeys.map(groupKey => (
-                        <div key={groupKey} style={{ width: '100%' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2.5rem', marginTop: '1.5rem' }}>
-                            <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to right, transparent, rgba(201, 168, 76, 0.35))' }} />
-                            <h4 style={{
-                              fontFamily: 'var(--font-deco)',
-                              color: 'var(--gold)',
-                              fontSize: '1.25rem',
-                              letterSpacing: '0.2em',
-                              textTransform: 'uppercase',
-                              margin: 0,
-                              textAlign: 'center'
-                            }}>
-                              <span className="fr">{groups[groupKey].name_fr}</span>
-                              <span className="en">{groups[groupKey].name_en}</span>
-                            </h4>
-                            <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to left, transparent, rgba(201, 168, 76, 0.35))' }} />
+                      {groupKeys.map(groupKey => {
+                        const tastingItems = groups[groupKey].items.filter(i => i.name_fr?.toLowerCase().includes('dégustation') || i.name_en?.toLowerCase().includes('tasting'));
+                        const regularItems = groups[groupKey].items.filter(i => !(i.name_fr?.toLowerCase().includes('dégustation') || i.name_en?.toLowerCase().includes('tasting')));
+
+                        return (
+                          <div key={groupKey} style={{ width: '100%' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2rem', marginTop: '1rem' }}>
+                              <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to right, transparent, rgba(201, 168, 76, 0.35))' }} />
+                              <h4 style={{
+                                fontFamily: 'var(--font-deco)',
+                                color: 'var(--gold)',
+                                fontSize: '1.25rem',
+                                letterSpacing: '0.2em',
+                                textTransform: 'uppercase',
+                                margin: 0,
+                                textAlign: 'center'
+                              }}>
+                                <span className="fr">{groups[groupKey].name_fr}</span>
+                                <span className="en">{groups[groupKey].name_en}</span>
+                              </h4>
+                              <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to left, transparent, rgba(201, 168, 76, 0.35))' }} />
+                            </div>
+                            
+                            {/* If there are tasting menu items, render them first */}
+                            {tastingItems.map((item, idx) => renderMenuItem(item, idx, tastingItems))}
+
+                            {/* Regular items in contiguous seamless gold-framed grid */}
+                            {regularItems.length > 0 && (
+                              <div className="menu-grid-framed">
+                                {regularItems.map((item, idx) => renderMenuItem(item, idx, regularItems))}
+                              </div>
+                            )}
                           </div>
-                          
-                          <div className="menu-grid" style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-                            gap: '3rem',
-                            width: '100%'
-                          }}>
-                            {groups[groupKey].items.map(renderMenuItem)}
-                          </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   );
                 })()}
@@ -346,6 +324,102 @@ export default function MenuPage() {
           )}
         </div>
       </section>
+
+      {/* Seamless Gold-Framed Grid Styles */}
+      <style jsx global>{`
+        .menu-grid-framed {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0;
+          width: 100%;
+          border-top: 1px solid rgba(201, 168, 76, 0.4);
+          border-left: 1px solid rgba(201, 168, 76, 0.4);
+          border-radius: 4px;
+          overflow: hidden;
+          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .menu-card-framed {
+          background: rgba(13, 10, 8, 0.95);
+          border-right: 1px solid rgba(201, 168, 76, 0.4);
+          border-bottom: 1px solid rgba(201, 168, 76, 0.4);
+          padding: 2.4rem 2.8rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 1.5rem;
+          transition: background 0.25s ease, box-shadow 0.25s ease;
+          box-sizing: border-box;
+        }
+
+        .menu-card-framed:hover {
+          background: rgba(24, 18, 14, 0.98);
+          box-shadow: inset 0 0 25px rgba(201, 168, 76, 0.08);
+        }
+
+        .menu-card-framed.span-full {
+          grid-column: 1 / -1;
+        }
+
+        .menu-card-framed .item-info {
+          flex: 1;
+          padding-right: 1.5rem;
+        }
+
+        .menu-card-framed .item-name {
+          font-family: var(--font-serif);
+          font-size: 1.55rem;
+          color: #ffffff;
+          margin-bottom: 0.6rem;
+          font-weight: bold;
+          letter-spacing: 0.02em;
+        }
+
+        .menu-card-framed .badge-unavailable {
+          font-size: 0.8rem;
+          color: #E74C3C;
+          border: 1px solid #E74C3C;
+          padding: 2px 6px;
+          text-transform: uppercase;
+          font-family: var(--font-deco);
+          font-weight: bold;
+          margin-left: 1rem;
+          border-radius: 2px;
+        }
+
+        .menu-card-framed .item-desc {
+          font-size: 1.15rem;
+          color: #e8e0d5;
+          font-style: italic;
+          line-height: 1.55;
+          opacity: 0.92;
+        }
+
+        .menu-card-framed .item-notes {
+          font-size: 1.05rem;
+          color: var(--gold);
+          margin-top: 0.6rem;
+          font-weight: 600;
+          letter-spacing: 0.02em;
+        }
+
+        .menu-card-framed .item-price {
+          font-family: var(--font-deco);
+          color: var(--gold);
+          font-size: 1.65rem;
+          font-weight: 700;
+          white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+          .menu-grid-framed {
+            grid-template-columns: 1fr;
+          }
+          .menu-card-framed {
+            padding: 1.8rem 1.6rem;
+          }
+        }
+      `}</style>
     </main>
   );
 }
