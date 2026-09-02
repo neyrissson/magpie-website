@@ -47,7 +47,7 @@ export default function RecruitSection() {
               <span className="fr">Laissez votre <em>CV</em></span>
               <span className="en">Leave your <em>CV</em></span>
             </h2>
-            <p style={{ color: '#f5f0e8', lineHeight: '1.8', fontSize: '1.25rem', fontFamily: 'var(--font-serif)' }}>
+            <p style={{ color: '#f5f0e8', lineHeight: '1.85', fontSize: '1.12rem', fontFamily: 'var(--font-sans), sans-serif', letterSpacing: '0.015em' }}>
               <span className="fr">Nous sommes toujours à la recherche de passionnés de la mixologie et du service. Envoyez-nous votre profil pour enrichir l'expérience Magpie Magique.</span>
               <span className="en">We are always looking for people passionate about mixology and service. Send us your profile to enhance the Magpie Magique experience.</span>
             </p>

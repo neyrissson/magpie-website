@@ -406,14 +406,16 @@ export default function MenuPage() {
         }
 
         .menu-card-framed .item-desc {
+          font-family: var(--font-sans), sans-serif;
           font-size: 1.02rem;
           color: #e8e0d5;
           font-style: italic;
-          line-height: 1.5;
+          line-height: 1.55;
           opacity: 0.92;
         }
 
         .menu-card-framed .item-notes {
+          font-family: var(--font-sans), sans-serif;
           font-size: 0.95rem;
           color: var(--gold);
           margin-top: 0.45rem;

@@ -37,10 +37,10 @@ button {
 body {
     background: var(--black);
     color: var(--cream);
-    font-family: var(--font-serif);
+    font-family: var(--font-sans), sans-serif;
     overflow-x: hidden;
     line-height: 1.7;
-    font-size: 1.18rem;
+    font-size: 1.05rem;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -324,10 +324,10 @@ body.lang-en .fr {
 }
 
 .hero-sub {
-    font-size: 1.3rem;
-    letter-spacing: 0.2em;
-    color: rgba(232, 218, 187, 0.7);
-    font-style: italic;
+    font-family: var(--font-sans), sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.15em;
+    color: rgba(232, 218, 187, 0.75);
     margin-bottom: 4rem;
 }
 
@@ -485,10 +485,12 @@ h2 em {
 }
 
 .about-text p {
-    font-size: 1.35rem;
-    line-height: 1.8;
-    color: rgba(232, 218, 187, 0.8);
+    font-family: var(--font-sans), sans-serif;
+    font-size: 1.12rem;
+    line-height: 1.85;
+    color: rgba(232, 218, 187, 0.85);
     margin-bottom: 2rem;
+    letter-spacing: 0.015em;
 }
 
 .about-visual {
