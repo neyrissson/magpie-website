@@ -384,13 +384,13 @@ export default function MenuPage() {
 
         .menu-card-framed .item-name {
           font-family: var(--font-serif) !important;
-          font-size: 1.22rem !important;
-          color: #ffffff;
-          margin-bottom: 0.4rem;
-          font-weight: 600;
+          font-size: 1.35rem !important;
+          color: var(--gold);
+          margin-bottom: 0.35rem;
+          font-weight: 700;
           letter-spacing: 0.02em;
           text-transform: none !important;
-          line-height: 1.35;
+          line-height: 1.3;
         }
 
         .menu-card-framed .badge-unavailable {
@@ -408,25 +408,26 @@ export default function MenuPage() {
         .menu-card-framed .item-desc {
           font-family: var(--font-sans), sans-serif;
           font-size: 1.02rem;
-          color: #e8e0d5;
+          color: #ded6cb;
           font-style: italic;
           line-height: 1.55;
-          opacity: 0.92;
+          opacity: 0.95;
         }
 
         .menu-card-framed .item-notes {
           font-family: var(--font-sans), sans-serif;
           font-size: 0.95rem;
-          color: var(--gold);
+          color: rgba(232, 218, 187, 0.75);
           margin-top: 0.45rem;
           font-weight: 500;
-          letter-spacing: 0.01em;
+          letter-spacing: 0.02em;
+          font-style: italic;
         }
 
         .menu-card-framed .item-price {
           font-family: var(--font-deco);
           color: var(--gold);
-          font-size: 1.25rem;
+          font-size: 1.35rem;
           font-weight: 700;
           white-space: nowrap;
         }
