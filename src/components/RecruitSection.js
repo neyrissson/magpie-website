@@ -35,152 +35,231 @@ export default function RecruitSection() {
   };
 
   return (
-    <section id="recruit" className="recruit-section" style={{ background: 'var(--black-card)', borderTop: '1px solid rgba(201, 168, 76, 0.1)', padding: '5rem 2rem 3.5rem' }}>
-      <div className="menu-container">
-        <p className="section-label">
-          <span className="fr">Recrutement</span>
-          <span className="en">Join our Team</span>
-        </p>
-        <div className="recruit-grid">
-          <div>
-            <h2 className="recruit-title">
-              <span className="fr">Laissez votre <em>CV</em></span>
-              <span className="en">Leave your <em>CV</em></span>
-            </h2>
-            <p style={{ color: '#f5f0e8', lineHeight: '1.85', fontSize: '1.12rem', fontFamily: 'var(--font-sans), sans-serif', letterSpacing: '0.015em' }}>
-              <span className="fr">Nous sommes toujours à la recherche de passionnés de la mixologie et du service. Envoyez-nous votre profil pour enrichir l'expérience Magpie Magique.</span>
-              <span className="en">We are always looking for people passionate about mixology and service. Send us your profile to enhance the Magpie Magique experience.</span>
-            </p>
-          </div>
+    <section id="recruit" className="recruit-section" style={{ background: 'var(--black-card)', borderTop: '1px solid rgba(201, 168, 76, 0.1)', padding: '3rem 1.5rem 2.5rem' }}>
+      <div className="recruit-compact-container">
+        <div className="recruit-compact-header">
+          <p className="recruit-badge">
+            <span className="fr">Recrutement</span>
+            <span className="en">Join our Team</span>
+          </p>
+          <h3 className="recruit-title">
+            <span className="fr">Laissez votre <em>CV</em></span>
+            <span className="en">Leave your <em>CV</em></span>
+          </h3>
+          <p className="recruit-sub">
+            <span className="fr">Passionné de mixologie ou de service ? Envoyez-nous votre profil.</span>
+            <span className="en">Passionate about mixology or hospitality? Send us your profile.</span>
+          </p>
+        </div>
 
-          <div className="recruit-form-card">
-            {status === 'SENT' ? (
-              <div style={{ textAlign: 'center', padding: '2rem' }}>
-                <h3 style={{ color: 'var(--gold)', fontFamily: 'var(--font-deco)', marginBottom: '1rem', fontSize: '2rem' }}>MERCI ! THANK YOU !</h3>
-                <p style={{ fontSize: '1.15rem', color: '#ffffff' }}>Votre candidature a été envoyée avec succès.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                {errorMessage && (
-                  <p style={{ color: '#ff6b6b', fontSize: '1rem', margin: 0, fontWeight: 'bold' }}>{errorMessage}</p>
-                )}
-                <div className="recruit-inputs-row">
-                  <input 
-                    type="text" placeholder="Nom Complet / Full Name" required 
-                    className="menu-item-input" 
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  />
-                  <input 
-                    type="email" placeholder="Email" required 
-                    className="menu-item-input"
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  />
-                </div>
+        <div className="recruit-card">
+          {status === 'SENT' ? (
+            <div style={{ textAlign: 'center', padding: '1.5rem' }}>
+              <h4 style={{ color: 'var(--gold)', fontFamily: 'var(--font-deco)', marginBottom: '0.5rem', fontSize: '1.3rem' }}>MERCI ! THANK YOU !</h4>
+              <p style={{ fontSize: '0.95rem', color: '#ffffff' }}>Votre candidature a été envoyée avec succès.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
+              {errorMessage && (
+                <p style={{ color: '#ff6b6b', fontSize: '0.9rem', margin: 0, fontWeight: 'bold' }}>{errorMessage}</p>
+              )}
+              
+              {/* Row 1: Name, Email, Position */}
+              <div className="recruit-row-inputs">
+                <input 
+                  type="text" placeholder="Nom Complet / Full Name" required 
+                  className="compact-input" 
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                />
+                <input 
+                  type="email" placeholder="Email" required 
+                  className="compact-input"
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                />
                 <select 
-                   className="menu-item-input"
-                   onChange={(e) => setFormData({...formData, position: e.target.value})}
-                   style={{ height: '3.8rem', background: 'rgba(0,0,0,0.5)', color: '#ffffff', border: '1px solid rgba(201, 168, 76, 0.35)', padding: '0 1.2rem', fontSize: '1.05rem', fontFamily: 'var(--font-sans), sans-serif' }}
+                  className="compact-input compact-select"
+                  value={formData.position}
+                  onChange={(e) => setFormData({...formData, position: e.target.value})}
                 >
-                    <option value="">Sélectionnez un poste / Select a position</option>
-                    <option value="bartender">Bartender</option>
-                    <option value="serveur">Serveur / Server</option>
-                    <option value="host">Hôte / Host</option>
-                    <option value="cuisine">Cuisine / Kitchen</option>
+                  <option value="">Poste / Position</option>
+                  <option value="bartender">Bartender</option>
+                  <option value="serveur">Serveur / Server</option>
+                  <option value="host">Hôte / Host</option>
+                  <option value="cuisine">Cuisine / Kitchen</option>
                 </select>
-                <div style={{ border: '2px dashed rgba(201, 168, 76, 0.4)', padding: '2rem', textAlign: 'center', background: 'rgba(201, 168, 76, 0.03)', borderRadius: '4px' }}>
-                  <label htmlFor="cv-upload" style={{ cursor: 'pointer', color: 'var(--gold)', fontSize: '1.05rem', fontWeight: 'bold', display: 'block' }}>
-                    <span className="fr">📄 Téléverser votre CV (PDF, DOCX)</span>
-                    <span className="en">📄 Upload your CV (PDF, DOCX)</span>
+              </div>
+
+              {/* Row 2: File upload + Submit */}
+              <div className="recruit-row-actions">
+                <div className="compact-file-box">
+                  <label htmlFor="cv-upload" className="compact-file-label">
+                    <span>{formData.cv ? `✓ ${formData.cv.name}` : '📄 CV (PDF, DOCX)'}</span>
                   </label>
                   <input 
                     id="cv-upload" type="file" accept=".pdf,.doc,.docx" hidden 
                     onChange={(e) => setFormData({...formData, cv: e.target.files[0]})}
                   />
-                  {formData.cv && <p style={{ marginTop: '0.8rem', fontSize: '1rem', color: '#ffffff', fontWeight: 'bold' }}>✓ {formData.cv.name}</p>}
                 </div>
+
                 <button 
                   type="submit" 
                   disabled={isSubmitting} 
-                  className="btn-primary" 
-                  style={{ 
-                    marginTop: '1rem', 
-                    width: '100%', 
-                    padding: '1.3rem',
-                    fontSize: '1.05rem',
-                    fontWeight: 'bold',
-                    opacity: isSubmitting ? 0.6 : 1, 
-                    cursor: isSubmitting ? 'wait' : 'pointer' 
-                  }}
+                  className="compact-submit-btn"
                 >
                   {isSubmitting ? (
-                    <>
-                      <span className="fr">Envoi en cours...</span>
-                      <span className="en">Sending...</span>
-                    </>
+                    <span>...</span>
                   ) : (
                     <>
-                      <span className="fr">Envoyer ma candidature</span>
-                      <span className="en">Send Application</span>
+                      <span className="fr">Envoyer</span>
+                      <span className="en">Send</span>
                     </>
                   )}
                 </button>
-              </form>
-            )}
-          </div>
+              </div>
+            </form>
+          )}
         </div>
       </div>
 
       <style jsx>{`
-        .recruit-grid {
-          display: grid;
-          grid-template-columns: minmax(280px, 1fr) 1.4fr;
-          gap: 4rem;
-          align-items: center;
+        .recruit-compact-container {
+          max-width: 760px;
+          margin: 0 auto;
+        }
+        .recruit-compact-header {
+          text-align: center;
+          margin-bottom: 1.5rem;
+        }
+        .recruit-badge {
+          font-family: var(--font-deco);
+          font-size: 0.85rem;
+          letter-spacing: 0.2em;
+          color: var(--gold);
+          text-transform: uppercase;
+          margin-bottom: 0.4rem;
+          font-weight: 700;
         }
         .recruit-title {
-          font-size: clamp(2.2rem, 5vw, 3rem);
+          font-family: var(--font-deco);
+          font-size: 1.8rem;
+          color: #ffffff;
+          margin-bottom: 0.4rem;
+          letter-spacing: 0.05em;
         }
-        .recruit-form-card {
-          padding: 2.5rem 2.2rem;
-          border: 1px solid rgba(201, 168, 76, 0.3);
-          background: rgba(0,0,0,0.4);
+        .recruit-title em {
+          font-family: var(--font-serif);
+          font-style: italic;
+          color: var(--gold);
+          font-weight: 400;
+        }
+        .recruit-sub {
+          font-family: var(--font-sans), sans-serif;
+          font-size: 0.95rem;
+          color: rgba(232, 218, 187, 0.75);
+          margin: 0;
+        }
+        .recruit-card {
+          padding: 1.5rem 1.6rem;
+          border: 1px solid rgba(201, 168, 76, 0.25);
+          background: rgba(0, 0, 0, 0.4);
           border-radius: 4px;
         }
-        .recruit-inputs-row {
+        .recruit-row-inputs {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 1.2rem;
+          grid-template-columns: 1.2fr 1.2fr 1fr;
+          gap: 0.8rem;
         }
-        .menu-item-input {
+        .compact-input {
           width: 100%;
-          padding: 1.1rem 1.2rem;
-          background: rgba(0,0,0,0.5);
-          border: 1px solid rgba(201, 168, 76, 0.35);
+          height: 2.6rem;
+          padding: 0 0.9rem;
+          background: rgba(0, 0, 0, 0.6);
+          border: 1px solid rgba(201, 168, 76, 0.3);
           color: #ffffff;
           font-family: var(--font-sans), sans-serif;
-          font-size: 1.05rem;
+          font-size: 0.92rem;
           border-radius: 3px;
           box-sizing: border-box;
-        }
-        .menu-item-input::placeholder {
-          color: rgba(255, 255, 255, 0.6);
-        }
-        .menu-item-input:focus {
-          border-color: var(--gold);
           outline: none;
-          background: rgba(0,0,0,0.7);
+          transition: border-color 0.2s;
+        }
+        .compact-input:focus {
+          border-color: var(--gold);
+        }
+        .compact-input::placeholder {
+          color: rgba(255, 255, 255, 0.45);
+        }
+        .compact-select {
+          cursor: pointer;
+        }
+        .recruit-row-actions {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          gap: 0.8rem;
+          align-items: center;
+        }
+        .compact-file-box {
+          border: 1px dashed rgba(201, 168, 76, 0.4);
+          height: 2.6rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0 1rem;
+          background: rgba(201, 168, 76, 0.04);
+          border-radius: 3px;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+        .compact-file-box:hover {
+          background: rgba(201, 168, 76, 0.08);
+          border-color: var(--gold);
+        }
+        .compact-file-label {
+          cursor: pointer;
+          color: var(--gold-light);
+          font-size: 0.88rem;
+          font-family: var(--font-sans), sans-serif;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .compact-submit-btn {
+          height: 2.6rem;
+          padding: 0 1.8rem;
+          background: var(--gold-gradient);
+          color: #000000 !important;
+          border: 1px solid var(--black);
+          font-family: var(--font-deco);
+          font-size: 0.82rem;
+          font-weight: 700;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          border-radius: 3px;
+          cursor: pointer;
+          transition: filter 0.2s, transform 0.2s;
+          white-space: nowrap;
+        }
+        .compact-submit-btn:hover {
+          filter: brightness(1.1);
+        }
+        .compact-submit-btn:disabled {
+          opacity: 0.6;
+          cursor: wait;
         }
 
-        @media (max-width: 900px) {
-          .recruit-grid {
+        @media (max-width: 680px) {
+          .recruit-row-inputs {
             grid-template-columns: 1fr;
-            gap: 3rem;
+            gap: 0.6rem;
           }
-          .recruit-form-card {
-            padding: 2rem 1.5rem;
-          }
-          .recruit-inputs-row {
+          .recruit-row-actions {
             grid-template-columns: 1fr;
+            gap: 0.6rem;
+          }
+          .compact-submit-btn {
+            width: 100%;
           }
         }
       `}</style>
