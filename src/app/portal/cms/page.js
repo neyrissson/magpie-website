@@ -354,31 +354,32 @@ export default function AdminCMS() {
   return (
     <main style={{ paddingTop: '10rem', minHeight: '100vh', background: 'var(--black)', color: 'var(--cream)' }}>
       <div className="portal-container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
-        <Link href="/portal" style={{ color: 'var(--gold)', fontSize: '1rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
+        <Link href="/portal" style={{ color: 'var(--gold)', fontSize: '1.1rem', fontWeight: 'bold', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.5rem', fontFamily: 'var(--font-sans), sans-serif' }}>
           ← <span className="fr">Retour au Tableau de Bord</span><span className="en">Back to Dashboard</span>
         </Link>
-        <p className="section-label">
+        <p className="section-label" style={{ fontSize: '1rem', fontWeight: 'bold', letterSpacing: '0.2em' }}>
           <span className="fr">Administration de Contenu</span>
           <span className="en">Content Management</span>
         </p>
-        <h2 style={{ marginBottom: '3rem' }}>
-          <span className="fr">Éditeur <em>CMS</em></span>
-          <span className="en">CMS <em>Editor</em></span>
-        </h2>
+        <h1 style={{ marginBottom: '3rem', fontSize: '2.8rem', color: '#ffffff', fontFamily: 'var(--font-deco)' }}>
+          <span className="fr">Éditeur <em style={{ color: 'var(--gold)' }}>CMS</em></span>
+          <span className="en">CMS <em style={{ color: 'var(--gold)' }}>Editor</em></span>
+        </h1>
 
         {/* Tab Switcher */}
-        <div className="menu-tabs" style={{ marginBottom: '3rem', display: 'flex', gap: '1rem', borderBottom: '1px solid rgba(201, 168, 76, 0.2)', paddingBottom: '1rem' }}>
+        <div className="menu-tabs" style={{ marginBottom: '3rem', display: 'flex', gap: '1rem', borderBottom: '1px solid rgba(201, 168, 76, 0.25)', paddingBottom: '1rem', flexWrap: 'wrap' }}>
           <button 
             onClick={() => setActiveTab('menu')}
             className="btn-secondary"
             style={{ 
               background: activeTab === 'menu' ? 'var(--gold)' : 'transparent',
               color: activeTab === 'menu' ? 'var(--black)' : 'var(--gold)',
-              padding: '0.8rem 2rem',
-              fontSize: '1rem',
+              padding: '1rem 2.2rem',
+              fontSize: '1.05rem',
               fontWeight: 'bold',
               border: '1px solid var(--gold)',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              fontFamily: 'var(--font-sans), sans-serif'
             }}
           >
             <span className="fr">Menus (Plats & Boissons)</span>
@@ -390,11 +391,12 @@ export default function AdminCMS() {
             style={{ 
               background: activeTab === 'events' ? 'var(--gold)' : 'transparent',
               color: activeTab === 'events' ? 'var(--black)' : 'var(--gold)',
-              padding: '0.8rem 2rem',
-              fontSize: '1rem',
+              padding: '1rem 2.2rem',
+              fontSize: '1.05rem',
               fontWeight: 'bold',
               border: '1px solid var(--gold)',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              fontFamily: 'var(--font-sans), sans-serif'
             }}
           >
             <span className="fr">Événements (Calendrier)</span>
@@ -406,11 +408,12 @@ export default function AdminCMS() {
             style={{ 
               background: activeTab === 'posters' ? 'var(--gold)' : 'transparent',
               color: activeTab === 'posters' ? 'var(--black)' : 'var(--gold)',
-              padding: '0.8rem 2rem',
-              fontSize: '1rem',
+              padding: '1rem 2.2rem',
+              fontSize: '1.05rem',
               fontWeight: 'bold',
               border: '1px solid var(--gold)',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              fontFamily: 'var(--font-sans), sans-serif'
             }}
           >
             <span className="fr">Générateur d'Affiches</span>
@@ -422,11 +425,12 @@ export default function AdminCMS() {
             style={{ 
               background: activeTab === 'settings' ? 'var(--gold)' : 'transparent',
               color: activeTab === 'settings' ? 'var(--black)' : 'var(--gold)',
-              padding: '0.8rem 2rem',
-              fontSize: '1rem',
+              padding: '1rem 2.2rem',
+              fontSize: '1.05rem',
               fontWeight: 'bold',
               border: '1px solid var(--gold)',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              fontFamily: 'var(--font-sans), sans-serif'
             }}
           >
             <span className="fr">Info Restaurant</span>
@@ -436,7 +440,7 @@ export default function AdminCMS() {
 
         {loading ? (
           <div style={{ padding: '5rem 0', textAlign: 'center' }}>
-            <p style={{ color: 'var(--gold)', letterSpacing: '0.15em', fontFamily: 'var(--font-deco)' }}>CHARGEMENT DES DONNÉES...</p>
+            <p style={{ color: 'var(--gold)', letterSpacing: '0.15em', fontFamily: 'var(--font-deco)', fontSize: '1.2rem' }}>CHARGEMENT DES DONNÉES...</p>
           </div>
         ) : (
           <div className="cms-content">
@@ -446,10 +450,10 @@ export default function AdminCMS() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '3rem' }}>
                 
                 {/* Categories Left Pane */}
-                <div style={{ background: 'rgba(255,255,255,0.02)', padding: '2rem', border: '1px solid rgba(201, 168, 76, 0.15)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                    <h3 style={{ color: 'var(--gold)', fontSize: '1.35rem', margin: 0 }}>CATEGORIES</h3>
-                    <button onClick={openNewCategory} className="btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>+ ADD</button>
+                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '2.5rem 2rem', border: '1px solid rgba(201, 168, 76, 0.25)', borderRadius: '4px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', borderBottom: '1px solid rgba(201, 168, 76, 0.2)', paddingBottom: '1rem' }}>
+                    <h3 style={{ color: 'var(--gold)', fontSize: '1.45rem', margin: 0, fontWeight: 'bold' }}>CATEGORIES</h3>
+                    <button onClick={openNewCategory} className="btn-primary" style={{ padding: '0.6rem 1.4rem', fontSize: '0.95rem', fontWeight: 'bold', fontFamily: 'var(--font-sans), sans-serif' }}>+ ADD</button>
                   </div>
                   
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -458,9 +462,10 @@ export default function AdminCMS() {
                         key={cat.id} 
                         onClick={() => setSelectedCategoryId(cat.id)}
                         style={{ 
-                          padding: '1.2rem',
-                          background: selectedCategoryId === cat.id ? 'rgba(201, 168, 76, 0.08)' : 'rgba(0,0,0,0.2)',
-                          border: selectedCategoryId === cat.id ? '1px solid var(--gold)' : '1px solid rgba(201, 168, 76, 0.1)',
+                          padding: '1.4rem',
+                          background: selectedCategoryId === cat.id ? 'rgba(201, 168, 76, 0.12)' : 'rgba(0,0,0,0.3)',
+                          border: selectedCategoryId === cat.id ? '1px solid var(--gold)' : '1px solid rgba(201, 168, 76, 0.15)',
+                          borderRadius: '4px',
                           cursor: 'pointer',
                           display: 'flex',
                           justifyContent: 'space-between',
@@ -468,7 +473,7 @@ export default function AdminCMS() {
                           opacity: cat.isAvailable !== false ? 1 : 0.6
                         }}
                       >
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
                           <input 
                             type="checkbox" 
                             checked={cat.isAvailable !== false} 
@@ -483,21 +488,25 @@ export default function AdminCMS() {
                             }}
                             onClick={(e) => e.stopPropagation()}
                             style={{ 
-                              width: '1.4rem', 
-                              height: '1.4rem', 
+                              width: '1.5rem', 
+                              height: '1.5rem', 
                               accentColor: 'var(--gold)', 
                               cursor: 'pointer' 
                             }}
                             title="Toggle Visibility"
                           />
                           <div>
-                            <p style={{ margin: 0, fontWeight: 'bold', fontSize: '1.15rem', color: selectedCategoryId === cat.id ? 'var(--gold)' : 'white' }}>{cat.name_en}</p>
-                            <p style={{ margin: 0, fontSize: '0.95rem', color: 'rgba(232, 218, 187, 0.5)' }}>/{cat.slug} · Order: {cat.order}</p>
+                            <p style={{ margin: 0, fontWeight: 'bold', fontSize: '1.25rem', color: selectedCategoryId === cat.id ? 'var(--gold)' : '#ffffff' }}>
+                              {cat.name_en} <span style={{ fontSize: '1.05rem', color: '#e0d8cc', fontWeight: 'normal' }}>({cat.name_fr})</span>
+                            </p>
+                            <p style={{ margin: '0.2rem 0 0 0', fontSize: '1rem', color: '#e0d8cc', fontFamily: 'var(--font-sans), sans-serif' }}>
+                              /{cat.slug} · Ordre: <strong style={{ color: 'var(--gold)', fontSize: '1.05rem' }}>{cat.order}</strong>
+                            </p>
                           </div>
                         </div>
-                        <div style={{ display: 'flex', gap: '0.5rem' }} onClick={(e) => e.stopPropagation()}>
-                          <button onClick={() => openEditCategory(cat)} style={{ background: 'none', border: 'none', color: '#C9A84C', cursor: 'pointer', fontSize: '1rem' }}>✏️</button>
-                          <button onClick={() => handleCatDelete(cat.id)} style={{ background: 'none', border: 'none', color: '#E74C3C', cursor: 'pointer', fontSize: '1rem' }}>🗑️</button>
+                        <div style={{ display: 'flex', gap: '0.8rem' }} onClick={(e) => e.stopPropagation()}>
+                          <button onClick={() => openEditCategory(cat)} title="Edit" style={{ background: 'none', border: 'none', color: '#C9A84C', cursor: 'pointer', fontSize: '1.3rem' }}>✏️</button>
+                          <button onClick={() => handleCatDelete(cat.id)} title="Delete" style={{ background: 'none', border: 'none', color: '#E74C3C', cursor: 'pointer', fontSize: '1.3rem' }}>🗑️</button>
                         </div>
                       </div>
                     ))}
@@ -505,17 +514,17 @@ export default function AdminCMS() {
                 </div>
 
                 {/* Items Right Pane */}
-                <div style={{ background: 'rgba(255,255,255,0.02)', padding: '2rem', border: '1px solid rgba(201, 168, 76, 0.15)' }}>
+                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '2.5rem 2rem', border: '1px solid rgba(201, 168, 76, 0.25)', borderRadius: '4px' }}>
                   {selectedCategory ? (
                     <div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', borderBottom: '1px solid rgba(201, 168, 76, 0.1)', paddingBottom: '1rem' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', borderBottom: '1px solid rgba(201, 168, 76, 0.2)', paddingBottom: '1.2rem', flexWrap: 'wrap', gap: '1rem' }}>
                         <div>
-                          <h3 style={{ color: 'var(--gold)', margin: 0, fontSize: '1.6rem' }}>
-                            {selectedCategory.name_en} <span style={{ fontSize: '1.25rem', fontWeight: 'normal', color: 'var(--cream)' }}>({selectedCategory.name_fr})</span>
+                          <h3 style={{ color: 'var(--gold)', margin: 0, fontSize: '1.8rem', fontWeight: 'bold' }}>
+                            {selectedCategory.name_en} <span style={{ fontSize: '1.35rem', fontWeight: 'normal', color: '#ffffff' }}>({selectedCategory.name_fr})</span>
                           </h3>
-                          <p style={{ margin: '0.2rem 0 0 0', fontSize: '1.05rem', color: 'rgba(232, 218, 187, 0.5)' }}>Tag: {selectedCategory.tag || 'none'}</p>
+                          <p style={{ margin: '0.4rem 0 0 0', fontSize: '1.1rem', color: '#e0d8cc', fontFamily: 'var(--font-sans), sans-serif' }}>Tag: <strong style={{ color: 'var(--gold)' }}>{selectedCategory.tag || 'none'}</strong></p>
                         </div>
-                        <button onClick={openNewItem} className="btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.95rem' }}>+ NEW ITEM</button>
+                        <button onClick={openNewItem} className="btn-primary" style={{ padding: '0.8rem 1.8rem', fontSize: '1rem', fontWeight: 'bold', fontFamily: 'var(--font-sans), sans-serif' }}>+ NEW ITEM</button>
                       </div>
 
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -524,52 +533,58 @@ export default function AdminCMS() {
                             <div 
                               key={item.id}
                               style={{ 
-                                padding: '1.5rem',
-                                background: 'rgba(0,0,0,0.3)',
-                                border: '1px solid rgba(201, 168, 76, 0.08)',
+                                padding: '1.8rem',
+                                background: 'rgba(0,0,0,0.4)',
+                                border: '1px solid rgba(201, 168, 76, 0.2)',
+                                borderRadius: '4px',
                                 display: 'flex',
                                 justifyContent: 'space-between',
+                                alignItems: 'flex-start',
                                 opacity: item.isAvailable ? 1 : 0.5
                               }}
                             >
                               <div style={{ flex: 1, paddingRight: '2rem' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
-                                  <h4 style={{ margin: 0, color: 'white', fontSize: '1.3rem' }}>{item.name_en} / {item.name_fr}</h4>
-                                  <span style={{ color: 'var(--gold)', fontWeight: 'bold', fontSize: '1.3rem' }}>{item.price}$</span>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', marginBottom: '0.8rem', flexWrap: 'wrap' }}>
+                                  <h4 style={{ margin: 0, color: '#ffffff', fontSize: '1.45rem', fontWeight: 'bold' }}>{item.name_en} / {item.name_fr}</h4>
+                                  <span style={{ color: 'var(--gold)', fontWeight: 'bold', fontSize: '1.45rem' }}>{item.price}$</span>
                                   {!item.isAvailable && (
-                                    <span style={{ fontSize: '0.8rem', color: '#E74C3C', border: '1px solid #E74C3C', padding: '1px 5px', textTransform: 'uppercase' }}>UNAVAILABLE</span>
+                                    <span style={{ fontSize: '0.85rem', color: '#E74C3C', border: '1px solid #E74C3C', padding: '2px 8px', textTransform: 'uppercase', fontWeight: 'bold', borderRadius: '3px' }}>UNAVAILABLE</span>
                                   )}
                                 </div>
                                 {(item.subcategory_en || item.subcategory_fr) && (
-                                  <div style={{ marginBottom: '0.5rem' }}>
-                                    <span style={{ fontSize: '0.72rem', color: 'var(--gold)', background: 'rgba(201, 168, 76, 0.15)', padding: '2px 8px', border: '1px solid rgba(201, 168, 76, 0.25)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 'bold' }}>
+                                  <div style={{ marginBottom: '0.8rem' }}>
+                                    <span style={{ fontSize: '0.9rem', color: 'var(--gold)', background: 'rgba(201, 168, 76, 0.15)', padding: '4px 10px', border: '1px solid rgba(201, 168, 76, 0.35)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 'bold', borderRadius: '3px', fontFamily: 'var(--font-sans), sans-serif' }}>
                                       {item.subcategory_en} {item.subcategory_fr ? `• ${item.subcategory_fr}` : ''}
                                     </span>
                                   </div>
                                 )}
-                                <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.85rem', color: 'rgba(232, 218, 187, 0.6)', fontStyle: 'italic' }}>
-                                  EN: {item.ingredients_en || 'no ingredients'} <br />
-                                  FR: {item.ingredients_fr || 'pas d\'ingrédients'}
-                                </p>
-                                {(item.notes_en || item.notes_fr) && (
-                                  <p style={{ margin: 0, fontSize: '0.75rem', color: 'rgba(232, 218, 187, 0.85)', fontStyle: 'italic' }}>
-                                    Description: {item.notes_en || item.notes_fr}
+                                <div style={{ margin: '0.6rem 0', fontSize: '1.1rem', color: '#f0eae1', lineHeight: '1.6', fontFamily: 'var(--font-sans), sans-serif' }}>
+                                  <p style={{ margin: '0 0 0.4rem 0' }}>
+                                    <strong style={{ color: 'var(--gold)', fontWeight: 'bold' }}>EN:</strong> {item.ingredients_en || 'no ingredients'}
                                   </p>
+                                  <p style={{ margin: '0 0 0.4rem 0' }}>
+                                    <strong style={{ color: 'var(--gold)', fontWeight: 'bold' }}>FR:</strong> {item.ingredients_fr || 'pas d\'ingrédients'}
+                                  </p>
+                                </div>
+                                {(item.notes_en || item.notes_fr) && (
+                                  <div style={{ margin: '0.6rem 0 0 0', fontSize: '1.05rem', color: 'var(--gold-light)', background: 'rgba(0,0,0,0.5)', padding: '0.6rem 1rem', borderRadius: '4px', borderLeft: '3px solid var(--gold)', fontFamily: 'var(--font-sans), sans-serif' }}>
+                                    <strong>Description / Notes:</strong> {item.notes_en || item.notes_fr}
+                                  </div>
                                 )}
                               </div>
-                              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '1rem' }}>
-                                <button onClick={() => openEditItem(item)} className="btn-secondary" style={{ padding: '0.4rem 1rem', fontSize: '0.9rem' }}>EDIT</button>
-                                <button onClick={() => handleItemDelete(item.id)} style={{ padding: '0.4rem 1rem', fontSize: '0.9rem', color: '#E74C3C', border: '1px solid #E74C3C', background: 'transparent', cursor: 'pointer' }}>DELETE</button>
+                              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '0.8rem' }}>
+                                <button onClick={() => openEditItem(item)} className="btn-secondary" style={{ padding: '0.6rem 1.4rem', fontSize: '0.95rem', fontWeight: 'bold', fontFamily: 'var(--font-sans), sans-serif' }}>EDIT</button>
+                                <button onClick={() => handleItemDelete(item.id)} style={{ padding: '0.6rem 1.4rem', fontSize: '0.95rem', fontWeight: 'bold', color: '#ff6b6b', border: '1px solid #ff6b6b', background: 'transparent', cursor: 'pointer', borderRadius: '3px', fontFamily: 'var(--font-sans), sans-serif' }}>DELETE</button>
                               </div>
                             </div>
                           ))
                         ) : (
-                          <p style={{ color: 'rgba(232, 218, 187, 0.4)', textAlign: 'center', padding: '3rem 0' }}>No items in this category yet. Click "+ NEW ITEM" to add one.</p>
+                          <p style={{ color: '#ffffff', textAlign: 'center', padding: '3rem 0', fontSize: '1.15rem' }}>No items in this category yet. Click "+ NEW ITEM" to add one.</p>
                         )}
                       </div>
                     </div>
                   ) : (
-                    <p style={{ color: 'rgba(232, 218, 187, 0.4)', textAlign: 'center', padding: '5rem 0' }}>Please select or create a category in the left panel.</p>
+                    <p style={{ color: '#ffffff', textAlign: 'center', padding: '5rem 0', fontSize: '1.2rem' }}>Please select or create a category in the left panel.</p>
                   )}
                 </div>
               </div>
@@ -764,23 +779,23 @@ export default function AdminCMS() {
                     </h4>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
                       <div>
-                        <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.4rem' }}>FRANÇAIS</label>
+                        <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>FRANÇAIS</label>
                         <textarea 
                           rows={3}
                           className="cms-input" 
                           value={footerAddressFr} 
                           onChange={(e) => setFooterAddressFr(e.target.value)} 
-                          style={{ width: '100%', padding: '0.8rem', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(201, 168, 76, 0.3)', color: 'var(--cream)', resize: 'vertical' }}
+                          style={{ width: '100%', padding: '0.9rem', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(201, 168, 76, 0.35)', color: '#ffffff', resize: 'vertical' }}
                         />
                       </div>
                       <div>
-                        <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.4rem' }}>ENGLISH</label>
+                        <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>ENGLISH</label>
                         <textarea 
                           rows={3}
                           className="cms-input" 
                           value={footerAddressEn} 
                           onChange={(e) => setFooterAddressEn(e.target.value)} 
-                          style={{ width: '100%', padding: '0.8rem', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(201, 168, 76, 0.3)', color: 'var(--cream)', resize: 'vertical' }}
+                          style={{ width: '100%', padding: '0.9rem', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(201, 168, 76, 0.35)', color: '#ffffff', resize: 'vertical' }}
                         />
                       </div>
                     </div>
@@ -788,13 +803,13 @@ export default function AdminCMS() {
 
                   {/* Contact Row */}
                   <div>
-                    <h4 style={{ color: 'var(--cream)', fontSize: '1rem', fontFamily: 'var(--font-serif)', marginBottom: '0.8rem', letterSpacing: '0.05em' }}>
-                      <span className="fr">2. Coordonnées de Contact</span>
-                      <span className="en">2. Contact Details</span>
+                    <h4 style={{ color: '#ffffff', fontSize: '1.2rem', fontFamily: 'var(--font-sans), sans-serif', fontWeight: 'bold', marginBottom: '0.8rem', letterSpacing: '0.05em' }}>
+                      <span className="fr">2. Téléphone & Courriel</span>
+                      <span className="en">2. Phone & Email</span>
                     </h4>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
                       <div>
-                        <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.4rem' }}>FRANÇAIS</label>
+                        <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>FRANÇAIS</label>
                         <textarea 
                           rows={3}
                           className="cms-input" 
@@ -926,51 +941,51 @@ export default function AdminCMS() {
       {showCatModal && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000 }}>
           <div style={{ background: 'rgba(15,12,10,0.98)', border: '1px solid var(--gold)', padding: '3rem', width: '100%', maxWidth: '600px', maxHeight: '90vh', overflowY: 'auto' }}>
-            <h3 style={{ color: 'var(--gold)', fontFamily: 'var(--font-deco)', fontSize: '1.4rem', marginBottom: '2rem', borderBottom: '1px solid rgba(201, 168, 76, 0.2)', paddingBottom: '1rem' }}>
+            <h3 style={{ color: 'var(--gold)', fontFamily: 'var(--font-deco)', fontSize: '1.6rem', fontWeight: 'bold', marginBottom: '2rem', borderBottom: '1px solid rgba(201, 168, 76, 0.25)', paddingBottom: '1rem' }}>
               {editingCategory ? 'EDIT CATEGORY' : 'NEW CATEGORY'}
             </h3>
             
             <form onSubmit={handleCatSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Name (EN)</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Name (EN)</label>
                   <input required type="text" className="cms-input" value={catForm.name_en} onChange={(e) => setCatForm({ ...catForm, name_en: e.target.value })} />
                 </div>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Nom (FR)</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Nom (FR)</label>
                   <input required type="text" className="cms-input" value={catForm.name_fr} onChange={(e) => setCatForm({ ...catForm, name_fr: e.target.value })} />
                 </div>
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '1.5rem' }}>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Slug (Unique URL path, e.g. "cocktails")</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Slug (URL path, e.g. "cocktails")</label>
                   <input required type="text" className="cms-input" value={catForm.slug} onChange={(e) => setCatForm({ ...catForm, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') })} />
                 </div>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Tag / Type</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Tag / Type</label>
                   <input type="text" placeholder="e.g. Creativity" className="cms-input" value={catForm.tag} onChange={(e) => setCatForm({ ...catForm, tag: e.target.value })} />
                 </div>
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '1.5rem' }}>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Order Index</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Order Index (0, 1, 2...)</label>
                   <input type="number" className="cms-input" value={catForm.order} onChange={(e) => setCatForm({ ...catForm, order: parseInt(e.target.value) })} />
                 </div>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Image Path Fallback</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Image Path Fallback</label>
                   <input type="text" className="cms-input" value={catForm.image} onChange={(e) => setCatForm({ ...catForm, image: e.target.value })} />
                 </div>
               </div>
 
               <div>
-                <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Link Uploaded Photo</label>
+                <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Link Uploaded Photo</label>
                 <select 
                   className="cms-input" 
                   value={catForm.photoId} 
                   onChange={(e) => setCatForm({ ...catForm, photoId: e.target.value })}
-                  style={{ background: 'rgba(0,0,0,0.8)', color: 'var(--cream)' }}
+                  style={{ background: 'rgba(0,0,0,0.8)', color: '#ffffff' }}
                 >
                   <option value="">None / Using Image Path Fallback</option>
                   {photos.map(p => (
@@ -987,17 +1002,17 @@ export default function AdminCMS() {
                   onChange={(e) => setCatForm({ ...catForm, isAvailable: e.target.checked })}
                   style={{ width: '1.5rem', height: '1.5rem', accentColor: 'var(--gold)', cursor: 'pointer' }}
                 />
-                <label htmlFor="cat-available" style={{ color: 'var(--cream)', fontSize: '0.95rem', cursor: 'pointer', userSelect: 'none' }}>
+                <label htmlFor="cat-available" style={{ color: '#ffffff', fontSize: '1.05rem', fontWeight: '500', cursor: 'pointer', userSelect: 'none' }}>
                   Category is Visible on Public Menu (Available)
                 </label>
               </div>
 
-              <div style={{ display: 'flex', gap: '1.5rem', marginTop: '2rem', borderTop: '1px solid rgba(201, 168, 76, 0.1)', paddingTop: '1.5rem' }}>
-                <button type="submit" className="btn-primary" style={{ flex: 1, padding: '1rem' }}>SAVE CHANGES</button>
+              <div style={{ display: 'flex', gap: '1.5rem', marginTop: '2rem', borderTop: '1px solid rgba(201, 168, 76, 0.15)', paddingTop: '1.5rem' }}>
+                <button type="submit" className="btn-primary" style={{ flex: 1, padding: '1.2rem', fontSize: '1rem', fontWeight: 'bold' }}>SAVE CHANGES</button>
                 <button 
                   type="button" 
                   onClick={() => setShowCatModal(false)}
-                  style={{ flex: 1, padding: '1rem', background: 'transparent', border: '1px solid rgba(232, 218, 187, 0.3)', color: 'var(--cream)', cursor: 'pointer' }}
+                  style={{ flex: 1, padding: '1.2rem', background: 'transparent', border: '1px solid rgba(232, 218, 187, 0.3)', color: '#ffffff', cursor: 'pointer', fontSize: '1rem', fontWeight: 'bold' }}
                 >
                   CANCEL
                 </button>
@@ -1010,81 +1025,81 @@ export default function AdminCMS() {
       {/* ── MENU ITEM MODAL OVERLAY ── */}
       {showItemModal && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000 }}>
-          <div style={{ background: 'rgba(15,12,10,0.98)', border: '1px solid var(--gold)', padding: '3rem', width: '100%', maxWidth: '600px', maxHeight: '90vh', overflowY: 'auto' }}>
-            <h3 style={{ color: 'var(--gold)', fontFamily: 'var(--font-deco)', fontSize: '1.4rem', marginBottom: '2rem', borderBottom: '1px solid rgba(201, 168, 76, 0.2)', paddingBottom: '1rem' }}>
+          <div style={{ background: 'rgba(15,12,10,0.98)', border: '1px solid var(--gold)', padding: '3rem', width: '100%', maxWidth: '650px', maxHeight: '90vh', overflowY: 'auto', borderRadius: '6px' }}>
+            <h3 style={{ color: 'var(--gold)', fontFamily: 'var(--font-deco)', fontSize: '1.6rem', fontWeight: 'bold', marginBottom: '2rem', borderBottom: '1px solid rgba(201, 168, 76, 0.25)', paddingBottom: '1rem' }}>
               {editingItem ? 'EDIT MENU ITEM' : 'NEW MENU ITEM'}
             </h3>
 
             <form onSubmit={handleItemSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '1.5rem' }}>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Name (EN)</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Name (EN)</label>
                   <input required type="text" className="cms-input" value={itemForm.name_en} onChange={(e) => setItemForm({ ...itemForm, name_en: e.target.value })} />
                 </div>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Price ($)</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Price ($)</label>
                   <input required type="text" placeholder="e.g. 16" className="cms-input" value={itemForm.price} onChange={(e) => setItemForm({ ...itemForm, price: e.target.value })} />
                 </div>
               </div>
 
               <div>
-                <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Nom (FR)</label>
+                <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Nom (FR)</label>
                 <input required type="text" className="cms-input" value={itemForm.name_fr} onChange={(e) => setItemForm({ ...itemForm, name_fr: e.target.value })} />
               </div>
 
               <div>
-                <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Ingredients (EN)</label>
+                <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Ingredients (EN)</label>
                 <textarea rows="2" className="cms-input" value={itemForm.ingredients_en} onChange={(e) => setItemForm({ ...itemForm, ingredients_en: e.target.value })} />
               </div>
 
               <div>
-                <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Ingrédients (FR)</label>
+                <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Ingrédients (FR)</label>
                 <textarea rows="2" className="cms-input" value={itemForm.ingredients_fr} onChange={(e) => setItemForm({ ...itemForm, ingredients_fr: e.target.value })} />
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Subcategory (EN)</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Subcategory (EN)</label>
                   <input type="text" placeholder="e.g. Pizza" className="cms-input" value={itemForm.subcategory_en} onChange={(e) => setItemForm({ ...itemForm, subcategory_en: e.target.value })} />
                 </div>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Sous-catégorie (FR)</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Sous-catégorie (FR)</label>
                   <input type="text" placeholder="e.g. Pizza" className="cms-input" value={itemForm.subcategory_fr} onChange={(e) => setItemForm({ ...itemForm, subcategory_fr: e.target.value })} />
                 </div>
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Description (EN)</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Description / Notes (EN)</label>
                   <input type="text" placeholder="e.g. sweet • smoky" className="cms-input" value={itemForm.notes_en} onChange={(e) => setItemForm({ ...itemForm, notes_en: e.target.value })} />
                 </div>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Description (FR)</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Description / Notes (FR)</label>
                   <input type="text" placeholder="e.g. doux • fumé" className="cms-input" value={itemForm.notes_fr} onChange={(e) => setItemForm({ ...itemForm, notes_fr: e.target.value })} />
                 </div>
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', alignItems: 'center' }}>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Availability</label>
-                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-                      <input type="radio" checked={itemForm.isAvailable === true} onChange={() => setItemForm({ ...itemForm, isAvailable: true })} />
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Availability</label>
+                  <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', marginTop: '0.5rem' }}>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '1rem', color: '#ffffff' }}>
+                      <input type="radio" checked={itemForm.isAvailable === true} onChange={() => setItemForm({ ...itemForm, isAvailable: true })} style={{ width: '1.2rem', height: '1.2rem', accentColor: 'var(--gold)' }} />
                       <span>Available</span>
                     </label>
-                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
-                      <input type="radio" checked={itemForm.isAvailable === false} onChange={() => setItemForm({ ...itemForm, isAvailable: false })} />
-                      <span style={{ color: '#E74C3C' }}>Sold Out</span>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '1rem', color: '#ff6b6b' }}>
+                      <input type="radio" checked={itemForm.isAvailable === false} onChange={() => setItemForm({ ...itemForm, isAvailable: false })} style={{ width: '1.2rem', height: '1.2rem', accentColor: '#ff6b6b' }} />
+                      <span style={{ fontWeight: 'bold' }}>Sold Out</span>
                     </label>
                   </div>
                 </div>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Link Uploaded Photo</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Link Uploaded Photo</label>
                   <select 
                     className="cms-input" 
                     value={itemForm.photoId} 
                     onChange={(e) => setItemForm({ ...itemForm, photoId: e.target.value })}
-                    style={{ background: 'rgba(0,0,0,0.8)', color: 'var(--cream)' }}
+                    style={{ background: 'rgba(0,0,0,0.8)', color: '#ffffff' }}
                   >
                     <option value="">None / Default</option>
                     {photos.map(p => (
@@ -1094,12 +1109,12 @@ export default function AdminCMS() {
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '1.5rem', marginTop: '2rem', borderTop: '1px solid rgba(201, 168, 76, 0.1)', paddingTop: '1.5rem' }}>
-                <button type="submit" className="btn-primary" style={{ flex: 1, padding: '1rem' }}>SAVE CHANGES</button>
+              <div style={{ display: 'flex', gap: '1.5rem', marginTop: '2rem', borderTop: '1px solid rgba(201, 168, 76, 0.15)', paddingTop: '1.5rem' }}>
+                <button type="submit" className="btn-primary" style={{ flex: 1, padding: '1.2rem', fontSize: '1rem', fontWeight: 'bold' }}>SAVE CHANGES</button>
                 <button 
                   type="button" 
                   onClick={() => setShowItemModal(false)}
-                  style={{ flex: 1, padding: '1rem', background: 'transparent', border: '1px solid rgba(232, 218, 187, 0.3)', color: 'var(--cream)', cursor: 'pointer' }}
+                  style={{ flex: 1, padding: '1.2rem', background: 'transparent', border: '1px solid rgba(232, 218, 187, 0.3)', color: '#ffffff', cursor: 'pointer', fontSize: '1rem', fontWeight: 'bold' }}
                 >
                   CANCEL
                 </button>
@@ -1112,24 +1127,24 @@ export default function AdminCMS() {
       {/* ── EVENT MODAL OVERLAY ── */}
       {showEventModal && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000 }}>
-          <div style={{ background: 'rgba(15,12,10,0.98)', border: '1px solid var(--gold)', padding: '3rem', width: '100%', maxWidth: '600px', maxHeight: '90vh', overflowY: 'auto' }}>
-            <h3 style={{ color: 'var(--gold)', fontFamily: 'var(--font-deco)', fontSize: '1.4rem', marginBottom: '2rem', borderBottom: '1px solid rgba(201, 168, 76, 0.2)', paddingBottom: '1rem' }}>
+          <div style={{ background: 'rgba(15,12,10,0.98)', border: '1px solid var(--gold)', padding: '3rem', width: '100%', maxWidth: '650px', maxHeight: '90vh', overflowY: 'auto', borderRadius: '6px' }}>
+            <h3 style={{ color: 'var(--gold)', fontFamily: 'var(--font-deco)', fontSize: '1.6rem', fontWeight: 'bold', marginBottom: '2rem', borderBottom: '1px solid rgba(201, 168, 76, 0.25)', paddingBottom: '1rem' }}>
               {editingEvent ? 'EDIT PUBLIC EVENT' : 'NEW PUBLIC EVENT'}
             </h3>
 
             <form onSubmit={handleEventSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '1.5rem' }}>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Date & Time</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Date & Time</label>
                   <input required type="datetime-local" className="cms-input" value={eventForm.date} onChange={(e) => setEventForm({ ...eventForm, date: e.target.value })} />
                 </div>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Event Type</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Event Type</label>
                   <select 
                     className="cms-input" 
                     value={eventForm.type} 
                     onChange={(e) => setEventForm({ ...eventForm, type: e.target.value })}
-                    style={{ background: 'rgba(0,0,0,0.8)', color: 'var(--cream)' }}
+                    style={{ background: 'rgba(0,0,0,0.8)', color: '#ffffff' }}
                   >
                     <option value="JAZZ">JAZZ</option>
                     <option value="COMEDY">COMEDY</option>
@@ -1140,40 +1155,40 @@ export default function AdminCMS() {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Title (EN)</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Title (EN)</label>
                   <input required type="text" className="cms-input" value={eventForm.title_en} onChange={(e) => setEventForm({ ...eventForm, title_en: e.target.value })} />
                 </div>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Titre (FR)</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Titre (FR)</label>
                   <input required type="text" className="cms-input" value={eventForm.title_fr} onChange={(e) => setEventForm({ ...eventForm, title_fr: e.target.value })} />
                 </div>
               </div>
 
               <div>
-                <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Description (EN)</label>
+                <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Description (EN)</label>
                 <textarea rows="3" className="cms-input" value={eventForm.desc_en} onChange={(e) => setEventForm({ ...eventForm, desc_en: e.target.value })} />
               </div>
 
               <div>
-                <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Description (FR)</label>
+                <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Description (FR)</label>
                 <textarea rows="3" className="cms-input" value={eventForm.desc_fr} onChange={(e) => setEventForm({ ...eventForm, desc_fr: e.target.value })} />
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '1.5rem' }}>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Calendar Color</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Calendar Color</label>
                   <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                    <input type="color" className="cms-input" style={{ padding: '0.2rem', height: '40px', width: '50px' }} value={eventForm.color} onChange={(e) => setEventForm({ ...eventForm, color: e.target.value })} />
-                    <span style={{ fontSize: '0.8rem', fontFamily: 'monospace' }}>{eventForm.color}</span>
+                    <input type="color" className="cms-input" style={{ padding: '0.2rem', height: '44px', width: '56px' }} value={eventForm.color} onChange={(e) => setEventForm({ ...eventForm, color: e.target.value })} />
+                    <span style={{ fontSize: '0.95rem', fontFamily: 'monospace', color: '#ffffff' }}>{eventForm.color}</span>
                   </div>
                 </div>
                 <div>
-                  <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Link Event Photo</label>
+                  <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Link Event Photo</label>
                   <select 
                     className="cms-input" 
                     value={eventForm.photoId} 
                     onChange={(e) => setEventForm({ ...eventForm, photoId: e.target.value })}
-                    style={{ background: 'rgba(0,0,0,0.8)', color: 'var(--cream)' }}
+                    style={{ background: 'rgba(0,0,0,0.8)', color: '#ffffff' }}
                   >
                     <option value="">Default/Fallback Asset</option>
                     {photos.map(p => (
@@ -1184,7 +1199,7 @@ export default function AdminCMS() {
               </div>
 
               <div>
-                <label className="section-label" style={{ fontSize: '0.7rem', display: 'block', marginBottom: '0.5rem' }}>Eventbrite Tickets Link (Optional)</label>
+                <label style={{ fontSize: '1.05rem', fontWeight: 'bold', color: 'var(--gold)', display: 'block', marginBottom: '0.4rem', fontFamily: 'var(--font-sans), sans-serif' }}>Eventbrite Tickets Link (Optional)</label>
                 <input 
                   type="url" 
                   placeholder="https://www.eventbrite.com/e/..." 
@@ -1314,22 +1329,25 @@ export default function AdminCMS() {
       <style jsx global>{`
         .cms-input {
           width: 100%;
-          padding: 0.9rem;
-          background: rgba(0,0,0,0.5);
-          border: 1px solid rgba(201, 168, 76, 0.2);
-          color: var(--cream);
-          font-family: var(--font-serif);
-          font-size: 1.15rem;
+          padding: 1rem 1.2rem;
+          background: rgba(0, 0, 0, 0.6);
+          border: 1px solid rgba(201, 168, 76, 0.35);
+          color: #ffffff;
+          font-family: var(--font-sans), sans-serif;
+          font-size: 1.1rem;
           box-sizing: border-box;
+          border-radius: 4px;
         }
         .cms-input:focus {
           border-color: var(--gold);
           outline: none;
-          background: rgba(0,0,0,0.7);
+          background: rgba(0, 0, 0, 0.85);
+          box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
         }
         .section-label {
-          font-size: 0.9rem !important;
-          letter-spacing: 0.15em;
+          font-size: 1rem !important;
+          font-weight: bold;
+          letter-spacing: 0.12em;
         }
       `}</style>
     </main>
