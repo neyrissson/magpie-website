@@ -47,8 +47,8 @@ export default function RecruitSection() {
             <span className="en">Leave your <em>CV</em></span>
           </h3>
           <p className="recruit-sub">
-            <span className="fr">Passionné de mixologie ou de service ? Envoyez-nous votre profil.</span>
-            <span className="en">Passionate about mixology or hospitality? Send us your profile.</span>
+            <span className="fr">Nous sommes toujours à la recherche de passionnés de la mixologie et du service. Envoyez-nous votre profil pour enrichir l'expérience Magpie Magique.</span>
+            <span className="en">We are always looking for people passionate about mixology and service. Send us your profile to enhance the Magpie Magique experience.</span>
           </p>
         </div>
 
@@ -144,21 +144,23 @@ export default function RecruitSection() {
         .recruit-title {
           font-family: var(--font-deco);
           font-size: 1.8rem;
-          color: #ffffff;
-          margin-bottom: 0.4rem;
+          color: var(--off-white);
+          margin-bottom: 0.6rem;
           letter-spacing: 0.05em;
         }
         .recruit-title em {
           font-family: var(--font-serif);
           font-style: italic;
           color: var(--gold);
-          font-weight: 400;
+          font-weight: 300;
         }
         .recruit-sub {
           font-family: var(--font-sans), sans-serif;
-          font-size: 0.95rem;
-          color: rgba(232, 218, 187, 0.75);
-          margin: 0;
+          font-size: 1.02rem;
+          line-height: 1.75;
+          color: rgba(232, 218, 187, 0.85);
+          margin: 0 auto;
+          max-width: 680px;
         }
         .recruit-card {
           padding: 1.5rem 1.6rem;
