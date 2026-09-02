@@ -5,7 +5,12 @@ import prisma from '../lib/prisma';
 export const metadata = {
   title: 'Magpie Magique — Cocktails & Ambiance | Montréal',
   description: 'Nouveau bar à cocktail sur le Plateau, inspiré par les bars d’hôtel mythiques à travers le monde.',
-  viewport: 'width=device-width, initial-scale=1.0',
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1.0,
+  maximumScale: 5.0,
 };
 
 export const revalidate = 0;

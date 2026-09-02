@@ -41,9 +41,9 @@ export default function RecruitSection() {
           <span className="fr">Recrutement</span>
           <span className="en">Join our Team</span>
         </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 1fr) 1.5fr', gap: '8rem', alignItems: 'center' }}>
+        <div className="recruit-grid">
           <div>
-            <h2 style={{ fontSize: '3rem' }}>
+            <h2 className="recruit-title">
               <span className="fr">Laissez votre <em>CV</em></span>
               <span className="en">Leave your <em>CV</em></span>
             </h2>
@@ -53,7 +53,7 @@ export default function RecruitSection() {
             </p>
           </div>
 
-          <div style={{ padding: '3.5rem', border: '1px solid rgba(201, 168, 76, 0.3)', background: 'rgba(0,0,0,0.4)', borderRadius: '4px' }}>
+          <div className="recruit-form-card">
             {status === 'SENT' ? (
               <div style={{ textAlign: 'center', padding: '2rem' }}>
                 <h3 style={{ color: 'var(--gold)', fontFamily: 'var(--font-deco)', marginBottom: '1rem', fontSize: '2rem' }}>MERCI ! THANK YOU !</h3>
@@ -64,7 +64,7 @@ export default function RecruitSection() {
                 {errorMessage && (
                   <p style={{ color: '#ff6b6b', fontSize: '1rem', margin: 0, fontWeight: 'bold' }}>{errorMessage}</p>
                 )}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.2rem' }}>
+                <div className="recruit-inputs-row">
                   <input 
                     type="text" placeholder="Nom Complet / Full Name" required 
                     className="menu-item-input" 
@@ -87,8 +87,8 @@ export default function RecruitSection() {
                     <option value="host">Hôte / Host</option>
                     <option value="cuisine">Cuisine / Kitchen</option>
                 </select>
-                <div style={{ border: '2px dashed rgba(201, 168, 76, 0.4)', padding: '2.5rem', textAlign: 'center', background: 'rgba(201, 168, 76, 0.03)', borderRadius: '4px' }}>
-                  <label htmlFor="cv-upload" style={{ cursor: 'pointer', color: 'var(--gold)', fontSize: '1.1rem', fontWeight: 'bold', display: 'block' }}>
+                <div style={{ border: '2px dashed rgba(201, 168, 76, 0.4)', padding: '2rem', textAlign: 'center', background: 'rgba(201, 168, 76, 0.03)', borderRadius: '4px' }}>
+                  <label htmlFor="cv-upload" style={{ cursor: 'pointer', color: 'var(--gold)', fontSize: '1.05rem', fontWeight: 'bold', display: 'block' }}>
                     <span className="fr">📄 Téléverser votre CV (PDF, DOCX)</span>
                     <span className="en">📄 Upload your CV (PDF, DOCX)</span>
                   </label>
@@ -105,7 +105,7 @@ export default function RecruitSection() {
                   style={{ 
                     marginTop: '1rem', 
                     width: '100%', 
-                    padding: '1.4rem',
+                    padding: '1.3rem',
                     fontSize: '1.05rem',
                     fontWeight: 'bold',
                     opacity: isSubmitting ? 0.6 : 1, 
@@ -131,6 +131,26 @@ export default function RecruitSection() {
       </div>
 
       <style jsx>{`
+        .recruit-grid {
+          display: grid;
+          grid-template-columns: minmax(280px, 1fr) 1.4fr;
+          gap: 6rem;
+          align-items: center;
+        }
+        .recruit-title {
+          font-size: clamp(2.2rem, 5vw, 3rem);
+        }
+        .recruit-form-card {
+          padding: 3.5rem;
+          border: 1px solid rgba(201, 168, 76, 0.3);
+          background: rgba(0,0,0,0.4);
+          border-radius: 4px;
+        }
+        .recruit-inputs-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.2rem;
+        }
         .menu-item-input {
           width: 100%;
           padding: 1.1rem 1.2rem;
@@ -140,6 +160,7 @@ export default function RecruitSection() {
           font-family: var(--font-sans), sans-serif;
           font-size: 1.05rem;
           border-radius: 3px;
+          box-sizing: border-box;
         }
         .menu-item-input::placeholder {
           color: rgba(255, 255, 255, 0.6);
@@ -148,6 +169,19 @@ export default function RecruitSection() {
           border-color: var(--gold);
           outline: none;
           background: rgba(0,0,0,0.7);
+        }
+
+        @media (max-width: 900px) {
+          .recruit-grid {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+          }
+          .recruit-form-card {
+            padding: 2rem 1.5rem;
+          }
+          .recruit-inputs-row {
+            grid-template-columns: 1fr;
+          }
         }
       `}</style>
     </section>
