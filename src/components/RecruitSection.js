@@ -43,26 +43,26 @@ export default function RecruitSection() {
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 1fr) 1.5fr', gap: '8rem', alignItems: 'center' }}>
           <div>
-            <h2 style={{ fontSize: '2.5rem' }}>
+            <h2 style={{ fontSize: '3rem' }}>
               <span className="fr">Laissez votre <em>CV</em></span>
               <span className="en">Leave your <em>CV</em></span>
             </h2>
-            <p style={{ color: 'rgba(232, 218, 187, 0.6)', lineHeight: '1.8' }}>
+            <p style={{ color: '#f5f0e8', lineHeight: '1.8', fontSize: '1.25rem', fontFamily: 'var(--font-serif)' }}>
               <span className="fr">Nous sommes toujours à la recherche de passionnés de la mixologie et du service. Envoyez-nous votre profil pour enrichir l'expérience Magpie Magique.</span>
               <span className="en">We are always looking for people passionate about mixology and service. Send us your profile to enhance the Magpie Magique experience.</span>
             </p>
           </div>
 
-          <div style={{ padding: '3rem', border: '1px solid rgba(201, 168, 76, 0.15)', background: 'rgba(0,0,0,0.2)' }}>
+          <div style={{ padding: '3.5rem', border: '1px solid rgba(201, 168, 76, 0.3)', background: 'rgba(0,0,0,0.4)', borderRadius: '4px' }}>
             {status === 'SENT' ? (
               <div style={{ textAlign: 'center', padding: '2rem' }}>
-                <h3 style={{ color: 'var(--gold)', fontFamily: 'var(--font-deco)', marginBottom: '1rem' }}>MERCI ! THANK YOU !</h3>
-                <p style={{ fontSize: '0.9rem' }}>Votre candidature a été envoyée avec succès.</p>
+                <h3 style={{ color: 'var(--gold)', fontFamily: 'var(--font-deco)', marginBottom: '1rem', fontSize: '2rem' }}>MERCI ! THANK YOU !</h3>
+                <p style={{ fontSize: '1.15rem', color: '#ffffff' }}>Votre candidature a été envoyée avec succès.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 {errorMessage && (
-                  <p style={{ color: '#ff6b6b', fontSize: '0.85rem', margin: 0 }}>{errorMessage}</p>
+                  <p style={{ color: '#ff6b6b', fontSize: '1rem', margin: 0, fontWeight: 'bold' }}>{errorMessage}</p>
                 )}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.2rem' }}>
                   <input 
@@ -79,7 +79,7 @@ export default function RecruitSection() {
                 <select 
                    className="menu-item-input"
                    onChange={(e) => setFormData({...formData, position: e.target.value})}
-                   style={{ height: '3.5rem', background: 'rgba(0,0,0,0.3)', color: 'var(--cream)', border: '1px solid rgba(201, 168, 76, 0.2)', padding: '0 1rem' }}
+                   style={{ height: '3.8rem', background: 'rgba(0,0,0,0.5)', color: '#ffffff', border: '1px solid rgba(201, 168, 76, 0.35)', padding: '0 1.2rem', fontSize: '1.05rem', fontFamily: 'var(--font-sans), sans-serif' }}
                 >
                     <option value="">Sélectionnez un poste / Select a position</option>
                     <option value="bartender">Bartender</option>
@@ -87,16 +87,16 @@ export default function RecruitSection() {
                     <option value="host">Hôte / Host</option>
                     <option value="cuisine">Cuisine / Kitchen</option>
                 </select>
-                <div style={{ border: '1px dashed rgba(201, 168, 76, 0.3)', padding: '2rem', textAlign: 'center' }}>
-                  <label htmlFor="cv-upload" style={{ cursor: 'pointer', color: 'var(--gold)', fontSize: '0.9rem' }}>
-                    <span className="fr">+ Téléverser votre CV (PDF)</span>
-                    <span className="en">+ Upload your CV (PDF)</span>
+                <div style={{ border: '2px dashed rgba(201, 168, 76, 0.4)', padding: '2.5rem', textAlign: 'center', background: 'rgba(201, 168, 76, 0.03)', borderRadius: '4px' }}>
+                  <label htmlFor="cv-upload" style={{ cursor: 'pointer', color: 'var(--gold)', fontSize: '1.1rem', fontWeight: 'bold', display: 'block' }}>
+                    <span className="fr">📄 Téléverser votre CV (PDF, DOCX)</span>
+                    <span className="en">📄 Upload your CV (PDF, DOCX)</span>
                   </label>
                   <input 
                     id="cv-upload" type="file" accept=".pdf,.doc,.docx" hidden 
                     onChange={(e) => setFormData({...formData, cv: e.target.files[0]})}
                   />
-                  {formData.cv && <p style={{ marginTop: '0.5rem', fontSize: '0.8rem' }}>{formData.cv.name}</p>}
+                  {formData.cv && <p style={{ marginTop: '0.8rem', fontSize: '1rem', color: '#ffffff', fontWeight: 'bold' }}>✓ {formData.cv.name}</p>}
                 </div>
                 <button 
                   type="submit" 
@@ -105,6 +105,9 @@ export default function RecruitSection() {
                   style={{ 
                     marginTop: '1rem', 
                     width: '100%', 
+                    padding: '1.4rem',
+                    fontSize: '1.05rem',
+                    fontWeight: 'bold',
                     opacity: isSubmitting ? 0.6 : 1, 
                     cursor: isSubmitting ? 'wait' : 'pointer' 
                   }}
@@ -130,15 +133,21 @@ export default function RecruitSection() {
       <style jsx>{`
         .menu-item-input {
           width: 100%;
-          padding: 1rem;
-          background: rgba(0,0,0,0.3);
-          border: 1px solid rgba(201, 168, 76, 0.15);
-          color: var(--cream);
-          font-family: var(--font-serif);
+          padding: 1.1rem 1.2rem;
+          background: rgba(0,0,0,0.5);
+          border: 1px solid rgba(201, 168, 76, 0.35);
+          color: #ffffff;
+          font-family: var(--font-sans), sans-serif;
+          font-size: 1.05rem;
+          border-radius: 3px;
+        }
+        .menu-item-input::placeholder {
+          color: rgba(255, 255, 255, 0.6);
         }
         .menu-item-input:focus {
           border-color: var(--gold);
           outline: none;
+          background: rgba(0,0,0,0.7);
         }
       `}</style>
     </section>

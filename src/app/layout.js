@@ -35,7 +35,7 @@ export default async function RootLayout({ children }) {
     <html lang="fr">
       <head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Pinyon+Script&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;600;700;800&family=Outfit:wght@400;500;600;700&family=Pinyon+Script&display=swap"
           rel="stylesheet"
         />
         <link rel="icon" type="image/svg+xml" href={logoUrl} />

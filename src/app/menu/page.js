@@ -163,7 +163,7 @@ export default function MenuPage() {
           {activeCategory && (
             <div className="menu-details reveal-fade" style={{ marginTop: '5rem', opacity: 1, transform: 'translateY(0)' }}>
               <div className="hero-divider"></div>
-              <h3 className="text-center" style={{ marginBottom: '3rem', color: 'var(--gold)', fontFamily: 'var(--font-deco)', textTransform: 'uppercase', letterSpacing: '0.3em' }}>
+              <h3 className="text-center" style={{ marginBottom: '3rem', color: 'var(--gold)', fontFamily: 'var(--font-deco)', textTransform: 'uppercase', letterSpacing: '0.12em', fontSize: '2.2rem', fontWeight: 'bold' }}>
                 <span className="fr">{categories.find(c => c.id === activeCategory)?.title_fr}</span>
                 <span className="en">{categories.find(c => c.id === activeCategory)?.title_en}</span>
               </h3>
@@ -172,10 +172,12 @@ export default function MenuPage() {
                   const activeCatObj = categories.find(c => c.id === activeCategory);
                   if (!activeCatObj || !activeCatObj.items || activeCatObj.items.length === 0) {
                     return (
-                      <p style={{ textAlign: 'center', color: 'rgba(232, 218, 187, 0.4)', padding: '3rem 0' }}>
-                        <span className="fr">Aucun article dans cette catégorie pour le moment.</span>
-                        <span className="en">No items in this category yet.</span>
-                      </p>
+                      <div style={{ textAlign: 'center', padding: '4rem 1rem', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(201, 168, 76, 0.2)', borderRadius: '4px' }}>
+                        <p style={{ color: '#ffffff', fontSize: '1.3rem', fontFamily: 'var(--font-sans), sans-serif', margin: 0, opacity: 0.9 }}>
+                          <span className="fr">Aucun article dans cette catégorie pour le moment.</span>
+                          <span className="en">No items in this category yet.</span>
+                        </p>
+                      </div>
                     );
                   }
 
@@ -187,42 +189,44 @@ export default function MenuPage() {
                       display: 'flex', 
                       justifyContent: 'space-between', 
                       alignItems: 'baseline', 
-                      borderBottom: '1px dotted rgba(201, 168, 76, 0.2)', 
+                      borderBottom: '1px dotted rgba(201, 168, 76, 0.3)', 
                       paddingBottom: '1.5rem',
                       opacity: item.isAvailable ? 1 : 0.5
                     }}>
                       <div className="item-info" style={{ paddingRight: '2rem' }}>
                         <div className="item-name" style={{ 
                           fontFamily: 'var(--font-serif)', 
-                          fontSize: '1.45rem', 
-                          color: 'var(--cream)', 
+                          fontSize: '1.55rem', 
+                          color: '#ffffff', 
                           marginBottom: '0.5rem',
-                          fontWeight: '600'
+                          fontWeight: 'bold'
                         }}>
                           <span className="fr">{item.name_fr}</span>
                           <span className="en">{item.name_en}</span>
                           {!item.isAvailable && (
-                            <span style={{ fontSize: '0.85rem', color: '#E74C3C', marginLeft: '1rem', border: '1px solid #E74C3C', padding: '2px 6px', textTransform: 'uppercase', fontFamily: 'var(--font-deco)' }}>
+                            <span style={{ fontSize: '0.85rem', color: '#E74C3C', marginLeft: '1rem', border: '1px solid #E74C3C', padding: '2px 8px', textTransform: 'uppercase', fontFamily: 'var(--font-deco)', fontWeight: 'bold' }}>
                               <span className="fr">Non disponible</span>
                               <span className="en">Unavailable</span>
                             </span>
                           )}
                         </div>
                         <div className="item-desc" style={{ 
-                          fontSize: '1.1rem', 
-                          color: 'rgba(232, 218, 187, 0.6)', 
+                          fontSize: '1.18rem', 
+                          color: '#f0eae1', 
                           fontStyle: 'italic',
-                          lineHeight: '1.4'
+                          lineHeight: '1.5',
+                          opacity: 0.92
                         }}>
                           <span className="fr">{item.ingredients_fr}</span>
                           <span className="en">{item.ingredients_en}</span>
                         </div>
                         {(item.notes_fr || item.notes_en) && (
                           <div className="item-notes" style={{
-                            fontSize: '0.95rem',
+                            fontSize: '1.05rem',
                             color: 'var(--gold)',
                             marginTop: '0.5rem',
-                            opacity: 0.8
+                            fontWeight: '600',
+                            opacity: 1
                           }}>
                             <span className="fr">{item.notes_fr}</span>
                             <span className="en">{item.notes_en}</span>
@@ -232,8 +236,8 @@ export default function MenuPage() {
                       <div className="item-price" style={{ 
                         fontFamily: 'var(--font-deco)', 
                         color: 'var(--gold)', 
-                        fontSize: '1.45rem', 
-                        fontWeight: '600' 
+                        fontSize: '1.55rem', 
+                        fontWeight: '700' 
                       }}>
                         {item.price}$
                       </div>
